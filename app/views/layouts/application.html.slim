@@ -1,10 +1,15 @@
 doctype html
 html
+  title= full_title(yield(:title))
   head
     title ChallengeApp
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
-    = render 'shared/header'
-    = yield
+    .container
+      .row
+        = render 'shared/header'
+        = yield
+        = render 'shared/footer'
+

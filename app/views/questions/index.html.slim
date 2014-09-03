@@ -1,5 +1,12 @@
 h1 Questions
+span.glyphicon.glyphicon-chevron-up
+.questions
+  = link_to 'New Question', new_question_path, class: "btn btn-primary"
 
-= render @questions
+  div
+    = render @questions
 
-= link_to 'New Question', new_question_path
+  = will_paginate @questions, renderer: BootstrapPagination::Rails
+
+
+

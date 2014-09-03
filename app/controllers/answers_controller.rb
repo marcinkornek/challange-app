@@ -14,6 +14,8 @@ class AnswersController < ApplicationController
     end
   end
 
+#######################################################################################
+
   private
 
     def set_question

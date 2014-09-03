@@ -1,6 +1,5 @@
-.details
-  '  Created on
-  = l(question.created_at, format: :long)
+.details.timestamp
+  | Posted #{time_tag(question.created_at, class:"timeago")}
+  br
   '  by
   = link_to question.user, user_path(question.user)
-

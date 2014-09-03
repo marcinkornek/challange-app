@@ -1,4 +1,4 @@
-h2 Sign in
+h1 Sign in
 
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
   .field
@@ -10,5 +10,5 @@ h2 Sign in
     = f.password_field :password, autocomplete: "off"
 
   div
-    = f.submit "Sign in"
+    = f.submit "Sign in", class: "btn btn-primary"
 

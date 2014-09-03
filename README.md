@@ -67,9 +67,9 @@ Most of the listed features can be implemented using core mechanisms of Ruby on 
 
 ### Features
 
-1. Users need to create profiles to add questions and answers.
-2. Question has title and contents. Title should be required.
-3. Answer has only contents. It should be required.
+v 1. Users need to create profiles to add questions and answers.
+v 2. Question has title and contents. Title should be required.
+v 3. Answer has only contents. It should be required.
 4. Users can update their questions, but not answers.
 5. Users can like answers added by users. It should be visible how many likes each answer has received.
 6. Question's author can accept one answer to the question. This answer should be marked as "Accepted".

@@ -1,12 +1,63 @@
-.question {
-  .details {
-    font-size: smaller;
-    color: #999;
+/* mixins, variables, etc. */
 
-    a {
-      color: #999;
+$gray-darker:  lighten(#000, 13.5%); // #222
+$gray-dark:    lighten(#000, 20%);   // #333
+$gray:         lighten(#000, 33.5%); // #555
+$gray-light:   lighten(#000, 46.7%); // #777
+$gray-lighter: lighten(#000, 93.5%); // #eee
+
+/* questions index */
+
+.questions {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid $gray-lighter;
+    .title{
+      display: block;
+      font-size: 25px;
+    }
+    .timestamp {
+      color: $gray-light;
     }
   }
+}
 
-  margin-bottom: 10px;
+/* question */
+
+.answer {
+  list-style: none;
+  margin: 0;
+  overflow: auto;
+  padding: 10px 0;
+  border-top: 1px solid $gray-lighter;
+  .title{
+    display: block;
+    font-size: 25px;
+  }
+  .timestamp {
+    color: $gray-light;
+  }
+}
+
+.question {
+  h2, h3 {
+    font-size: 30px;
+    text-align: left;
+    padding-bottom: 10px;
+  }
+}
+
+.links {
+  text-align: right;
+}
+
+.border-bottom {
+  border-bottom: 1px solid $gray-lighter;
+}
+
+.details {
+  color: $gray-light;
 }

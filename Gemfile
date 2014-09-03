@@ -2,8 +2,13 @@ source 'https://rubygems.org'
 
 # core
 gem 'rails', '4.1.1'
-gem 'sqlite3'
+gem 'pg'
+gem 'bootstrap-sass', '~> 3.2.0'
 gem 'devise'
+gem 'faker', '1.1.2'
+gem 'will_paginate', '~> 3.0'
+gem 'will_paginate-bootstrap'
+gem 'bootstrap-glyphicons'
 
 # frontend
 gem 'slim-rails'
@@ -30,6 +35,13 @@ group :test do
   gem "factory_girl_rails", "~> 4.2.0"
   gem "cucumber-rails",     "~> 1.4.1", require: false
   gem "factory_girl"
+end
+
+group :development, :test do
+  gem 'quiet_assets' #nie wyświetla requestów o assety w logu "rails s"
+  gem 'spork-rails', '4.0.0'
+  gem 'guard-spork', '1.5.0'
   gem "rspec-rails"
+  gem 'guard-rspec', '2.5.0'
 end
 

@@ -1,0 +1,7 @@
+- provide(:title, 'Users')
+h1 Users
+
+.users
+  = render @users
+
+  = will_paginate @users, renderer: BootstrapPagination::Rails

@@ -1,24 +1,24 @@
 .question id="question-#{@question.id}"
   h2= @question.title
 
-  = render "details", question: @question
-
   p
-    = @question.contents
+    = wrap(@question.contents)
 
   .links
     = link_to 'Edit', edit_question_path(@question)
     '  |
     = link_to 'Delete', question_path(@question, method: :delete)
 
-  h3 Answers
+  = render "details", question: @question
+
+  h2 Answers
 
   - if @question.answers.any?
     = render @question.answers
   - else
     '  There are no answers to this question.
 
-  h3 Add answer
+  h2 Add answer
 
   = form_for [@question, @answer] do |f|
 
