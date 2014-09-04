@@ -5,8 +5,12 @@ h1 Edit Profile
   = devise_error_messages!
 
   .field
+    = f.label :username
+    = f.text_field :username, autofocus: true
+
+  .field
     = f.label :email
-    = f.email_field :email, autofocus: true
+    = f.email_field :email
 
   .field
     = f.label :password
@@ -25,5 +29,5 @@ h1 Edit Profile
     = f.password_field :current_password, autocomplete: "off"
 
   div
-    = f.submit "Update"
+    = f.submit "Update", class: "btn btn-primary"
 

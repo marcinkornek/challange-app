@@ -1,15 +1,23 @@
 .question id="question-#{@question.id}"
   h2= @question.title
 
-  p
+
+  .col-md-1.center
+    span.glyphicon.glyphicon-chevron-up
+    div= 'a'
+    span.glyphicon.glyphicon-chevron-down
+
+  .col-md-8
     = wrap(@question.contents)
 
-  .links.align-left
-    = link_to 'Edit', edit_question_path(@question)
-    '  |
-    = link_to 'Delete', question_path(@question, method: :delete)
+  .col-md-3
+    .links.align-right
+      = link_to 'Edit', edit_question_path(@question)
+      '  |
+      = link_to 'Delete', question_path(@question, method: :delete)
 
-  = render "details", question: @question
+      = render "details", question: @question
+
 
   h2 = "#{@question.answers.count} Answers"
 
@@ -25,6 +33,7 @@
     .field
       = f.label :contents
       = f.text_area :contents
+      br
 
-    .actions= f.submit 'Save'
+    .actions= f.submit 'Save', class: "btn btn-primary"
 

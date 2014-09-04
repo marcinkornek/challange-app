@@ -1,14 +1,16 @@
 .answer id="answer-#{answer.id}"
-  .col-md-1
+  .col-md-1.center
     span.glyphicon.glyphicon-chevron-up
     div= 'a'
     span.glyphicon.glyphicon-chevron-down
 
-  .col-md-11
+  .col-md-8
     .contents= wrap(answer.contents)
-    .details
-      '  Answered on
-      = l(answer.created_at, format: :long)
+
+  .col-md-3
+    .details.align-right
+    = render "answers/details", answer: answer
+      br
       '  by
       = link_to answer.user, user_path(answer.user)
 

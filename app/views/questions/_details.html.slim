@@ -2,4 +2,4 @@
   | Posted #{time_tag(question.created_at, class:"timeago")}
   br
   '  by
-  = link_to question.user, user_path(question.user)
+  = link_to question.user.username, user_path(question.user)

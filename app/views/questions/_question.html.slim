@@ -1,8 +1,12 @@
 
-li id="question-#{question.id}"
-  .col-md-1
+.question id="question-#{question.id}"
+  .col-md-1.center
     = "#{question.answers.count} answers"
 
-  .col-md-11
+  .col-md-8
     .title= link_to question.title, question_path(question)
+
+  .col-md-3
+    .details.align-right
     = render "questions/details", question: question
+

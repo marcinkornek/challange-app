@@ -10,14 +10,17 @@ namespace :db do
   def make_users
     puts "---------creating users--------------------"
     User.create!(
-                 email: "example@railstutorial.org",
+                 username: "mars124",
+                 email: "mars124@o2.pl",
                  password: "asdasdasd",
                  password_confirmation: "asdasdasd"
                  )
     99.times do |n|
+      username  = "Username_#{n+1}"
       email = "example-#{n+1}@railstutorial.org"
       password  = "password"
       User.create!(
+                   username: username,
                    email: email,
                    password: password,
                    password_confirmation: password
@@ -40,12 +43,15 @@ namespace :db do
 
   def make_answers
     puts "---------creating answers---------------"
-    questions = Question.all.limit(6)
-    5.times do
+    # questions = Question.all.limit(6)
+    users = User.all.limit(6)
+
+    5.times do |n|
+      n += 1
       contents = Faker::Lorem.sentence(10)
-      questions.each { |question| question.answers.create!(
+      users.each { |user| user.questions.first.answers.create!(
                                                   contents: contents,
-                                                  user_id: 1
+                                                  user_id: n
                                                   ) }
     end
   end

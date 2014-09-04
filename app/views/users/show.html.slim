@@ -1,12 +1,11 @@
 .user id="user-#{@user.id}"
-  h1= @user
+  h1= @user.username
 
   .questions
     h3 =  link_to "#{@user.questions.count} Questions", questions_user_path
 
     - if @user.questions.any?
-      - @user.questions.limit(5).each do |question|
-        = render 'question', question: question
+      = render @user.questions.limit(5)
       - if @user.questions.count > 5
         = link_to 'view more', questions_user_path
 
@@ -17,8 +16,7 @@
     h3 =  link_to "#{@user.answers.count} Answers", answers_user_path
 
     - if @user.answers.any?
-      - @user.answers.limit(5).each do |answer|
-        = render 'answer', answer: answer
+      = render @user.answers.limit(5)
       - if @user.answers.count > 5
         = link_to 'view more', answers_user_path
     - else
