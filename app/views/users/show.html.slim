@@ -3,6 +3,8 @@
 
   - if @user.avatar.url.present?
     = image_tag(@user.avatar.url(:thumb))
+  - else
+    = gravatar_for @user
 
   .questions
     h3 =  link_to "#{@user.questions.count} Questions", questions_user_path
