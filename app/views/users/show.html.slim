@@ -1,10 +1,20 @@
 .user id="user-#{@user.id}"
-  h1= @user.username
 
-  - if @user.avatar.url.present?
-    = image_tag(@user.avatar.url(:thumb))
-  - else
-    = gravatar_for @user
+  h1.border-bottom.align-left = @user.username
+
+  .profile.clearfix
+    .col-md-2
+      - if @user.avatar.url.present?
+        = image_tag(@user.avatar.url(:thumb))
+      - else
+        = gravatar_for @user, size: 130
+
+    .col-md-9
+      = "username: #{@user.username}"
+      br
+      = "email: #{@user.email}"
+      br
+      = "member for: #{@user.created_at.strftime("%d %b. %Y")}"
 
   .questions
     h3 =  link_to "#{@user.questions.count} Questions", questions_user_path
