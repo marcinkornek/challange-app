@@ -1,6 +1,9 @@
 .user id="user-#{@user.id}"
   h1= @user.username
 
+  - if @user.avatar.url.present?
+    = image_tag(@user.avatar.url(:thumb))
+
   .questions
     h3 =  link_to "#{@user.questions.count} Questions", questions_user_path
 

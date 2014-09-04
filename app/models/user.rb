@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   # :recoverable, :rememberable and :trackable
   devise :database_authenticatable, :registerable, :validatable #, :comfirmable, :recoverable, :rememberable
 
+  mount_uploader :avatar, AvatarUploader
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email,  format: { with: VALID_EMAIL_REGEX }
 

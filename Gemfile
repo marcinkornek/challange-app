@@ -9,6 +9,8 @@ gem 'faker', '1.1.2'
 gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'
 gem 'bootstrap-glyphicons'
+gem 'rmagick', '2.13.2'
+gem 'carrierwave'
 
 # frontend
 gem 'slim-rails'
@@ -43,5 +45,6 @@ group :development, :test do
   gem 'guard-spork', '1.5.0'
   gem "rspec-rails"
   gem 'guard-rspec', '2.5.0'
+  gem 'debugger2'
 end
 

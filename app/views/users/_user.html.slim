@@ -1,3 +1,6 @@
 li
+  - if user.avatar.url.present?
+    = image_tag(user.avatar.url(:thumb))
   = link_to user.username, user
   = " (#{pluralize(user.questions.count, 'question')})"
+

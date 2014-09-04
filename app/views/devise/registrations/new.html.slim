@@ -1,5 +1,5 @@
 h1 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {multipart: true}) do |f|
   = devise_error_messages!
 
   .field
@@ -17,6 +17,11 @@ h1 Sign up
   .field
     label= f.label :password_confirmation
     = f.password_field :password_confirmation, autocomplete: 'off'
+
+  .field
+    = f.label :avatar do
+      = f.file_field :avatar
+      = f.hidden_field :avatar_cache
 
   div
     = f.submit "Sign up", class: "btn btn-primary"

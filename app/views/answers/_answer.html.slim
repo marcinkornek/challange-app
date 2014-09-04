@@ -9,9 +9,9 @@
 
   .col-md-3
     .details.align-right
-    = render "answers/details", answer: answer
-      br
-      '  by
-      = link_to answer.user, user_path(answer.user)
+      = render "answers/details", answer: answer
+        br
+        '  by
+        = link_to answer.user, user_path(answer.user)
 
 
