@@ -1,0 +1,6 @@
+- provide(:title, "#{@user.email} answers ")
+h1 Answers
+
+= render @answers
+
+= will_paginate @answers, renderer: BootstrapPagination::Rails

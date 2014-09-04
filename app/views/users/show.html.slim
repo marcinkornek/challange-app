@@ -2,19 +2,24 @@
   h1= @user
 
   .questions
-    h3 Questions
+    h3 =  link_to "#{@user.questions.count} Questions", questions_user_path
 
     - if @user.questions.any?
-      - @user.questions.each do |question|
+      - @user.questions.limit(5).each do |question|
         = render 'question', question: question
+      - if @user.questions.count > 5
+        = link_to 'view more', questions_user_path
+
     - else
       '  This user has not created any questions.
 
   .answers
-    h3 Answers
+    h3 =  link_to "#{@user.answers.count} Answers", answers_user_path
 
     - if @user.answers.any?
-      - @user.answers.each do |answer|
+      - @user.answers.limit(5).each do |answer|
         = render 'answer', answer: answer
+      - if @user.answers.count > 5
+        = link_to 'view more', answers_user_path
     - else
       '  This user has not added any answers.

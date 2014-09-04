@@ -1,8 +1,15 @@
 .answer id="answer-#{answer.id}"
-  .contents= wrap(answer.contents)
-  .details
-    '  Answered on
-    = l(answer.created_at, format: :long)
-    '  by
-    = link_to answer.user, user_path(answer.user)
+  .col-md-1
+    span.glyphicon.glyphicon-chevron-up
+    div= 'a'
+    span.glyphicon.glyphicon-chevron-down
+
+  .col-md-11
+    .contents= wrap(answer.contents)
+    .details
+      '  Answered on
+      = l(answer.created_at, format: :long)
+      '  by
+      = link_to answer.user, user_path(answer.user)
+
 

@@ -9,6 +9,12 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show]
 
+   resources :users do
+    member do
+      get :questions, :answers
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -4,14 +4,14 @@
   p
     = wrap(@question.contents)
 
-  .links
+  .links.align-left
     = link_to 'Edit', edit_question_path(@question)
     '  |
     = link_to 'Delete', question_path(@question, method: :delete)
 
   = render "details", question: @question
 
-  h2 Answers
+  h2 = "#{@question.answers.count} Answers"
 
   - if @question.answers.any?
     = render @question.answers
