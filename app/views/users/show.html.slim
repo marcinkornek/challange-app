@@ -10,11 +10,16 @@
         = gravatar_for @user, size: 130
 
     .col-md-9
-      = "username: #{@user.username}"
-      br
-      = "email: #{@user.email}"
-      br
-      = "member for: #{@user.created_at.strftime("%d %b. %Y")}"
+      table
+        tr
+          th  = "username:"
+          td = "#{@user.username}"
+        tr
+          th = "email:"
+          td = " #{@user.email}"
+        tr
+          th = "member for:"
+          td = "#{@user.created_at.strftime("%d %b. %Y")}"
 
   .questions
     h3 =  link_to "#{@user.questions.count} Questions", questions_user_path

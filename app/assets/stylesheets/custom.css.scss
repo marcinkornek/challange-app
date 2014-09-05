@@ -218,3 +218,21 @@ aside {
     color: #468847;
     text-align: left;
  }
+
+#error_explanation {
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+    padding-left: 0px;
+  }
+}
+
+/* table */
+
+table {
+  th {
+    padding-right: 10px;
+    color: $gray-light;
+  }
+}

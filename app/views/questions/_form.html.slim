@@ -1,10 +1,7 @@
 = form_for @question do |f|
-  - if @question.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@question.errors.count, "error")} prohibited this question from being saved:"
-      ul
-        - @question.errors.full_messages.each do |message|
-          li = message
+  = render 'shared/error_messages', object: f.object
+
+  h1 New question
 
   .field
     = f.label :title
