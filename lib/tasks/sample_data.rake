@@ -33,7 +33,7 @@ namespace :db do
     users = User.all.limit(6)
     50.times do
       title = Faker::Lorem.sentence(3)
-      contents = Faker::Lorem.sentence(10)
+      contents = Faker::Lorem.sentence(20)
       users.each { |user| user.questions.create!(
                                                   title: title,
                                                   contents: contents
@@ -48,7 +48,7 @@ namespace :db do
 
     5.times do |n|
       n += 1
-      contents = Faker::Lorem.sentence(10)
+      contents = Faker::Lorem.sentence(100)
       users.each { |user| user.questions.first.answers.create!(
                                                   contents: contents,
                                                   user_id: n

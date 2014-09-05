@@ -5,7 +5,10 @@
     span.glyphicon.glyphicon-chevron-down
 
   .col-md-8
-    .contents= wrap(answer.contents)
+    .contents
+      = wrap(answer.contents)
+    .link
+      = link_to 'link to this answer', question_url(answer.question, anchor: "answer-#{answer.id}")
 
   .col-md-3
     .details.align-right
