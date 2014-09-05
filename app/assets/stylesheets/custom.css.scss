@@ -133,6 +133,7 @@ input {
 }
 
 /* users */
+
 .users {
   list-style: none;
   margin: 0;
@@ -140,10 +141,8 @@ input {
     overflow: auto;
     padding: 10px 0;
     border-top: 1px solid $gray-lighter;
-    .title{
-      display: block;
-      font-size: 20px;
-    }
+    display: block;
+    font-size: 20px;
     .timestamp {
       color: $gray-light;
     }
@@ -187,6 +186,7 @@ aside {
   // float: left;
   margin-right: 10px;
   margin-left: 10px;
+  margin-bottom: 10px;
 }
 
 /*flash*/
@@ -235,4 +235,38 @@ table {
     padding-right: 10px;
     color: $gray-light;
   }
+}
+
+// label {
+//   display: inline-block;
+// }
+
+// #user_remove_avatar {
+//   display: inline-block;
+//   margin-left: 5px;
+// }
+.inline-block {
+  display: inline-block;
+}
+
+.check-box {
+  margin-left: 5px;
+}
+
+.non-bold {
+  label {
+    font-weight: normal;
+  }
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.margin-bottom5 {
+  margin-bottom: 5px;
+}
+
+.margin-top10 {
+  margin-top: 10px;
 }
