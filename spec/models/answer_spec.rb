@@ -14,6 +14,7 @@ describe Answer do
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }
   it { should respond_to(:question) }
+  it { should respond_to(:points) }
 
   it { should be_valid }
 

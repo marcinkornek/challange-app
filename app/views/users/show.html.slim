@@ -36,7 +36,7 @@
     h3 =  link_to "#{@user.answers.count} Answers", answers_user_path
 
     - if @user.answers.any?
-      = render @user.answers.limit(5)
+      = render 'shared/short_answers', answers:@user.answers
       - if @user.answers.count > 5
         = link_to 'view more', answers_user_path
     - else

@@ -1,8 +1,6 @@
 .answer id="answer-#{answer.id}"
   .col-md-1.center
-    span.glyphicon.glyphicon-chevron-up
-    div= 'a'
-    span.glyphicon.glyphicon-chevron-down
+    div = render "answers/answer_rating", answer:answer
 
   .col-md-8
     .contents

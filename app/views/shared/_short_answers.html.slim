@@ -1,0 +1,18 @@
+- answers.each do |answer|
+
+  .answer id="answer-#{answer.id}"
+    .col-md-1.center
+      = render "answers/answer_points", answer:answer
+
+    .col-md-8
+      .contents
+        = truncate(answer.contents, length: 50)
+      .link
+        = link_to 'link to this answer', question_url(answer.question, anchor: "answer-#{answer.id}")
+
+    .col-md-3
+      .details.align-right
+        = render "answers/details", answer: answer
+          br
+          '  by
+          = link_to answer.user, user_path(answer.user)
