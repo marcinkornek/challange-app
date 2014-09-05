@@ -5,7 +5,7 @@ describe Answer do
   let(:user) { FactoryGirl.create(:user) }
   let(:question) { FactoryGirl.create(:question) }
 
-  before { @answer = question.answers.build(contents: "tempor incididunt ut labore et dolore magna aliqua.") }
+  before { @answer = question.answers.build(contents: "tempor incididunt ut labore et dolore magna aliqua.", user: user) }
 
   subject { @answer }
 

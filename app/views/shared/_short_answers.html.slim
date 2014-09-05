@@ -6,7 +6,7 @@
 
     .col-md-8
       .contents
-        = truncate(answer.contents, length: 50)
+        = truncate(answer.contents, length: 100)
       .link
         = link_to 'link to this answer', question_url(answer.question, anchor: "answer-#{answer.id}")
 

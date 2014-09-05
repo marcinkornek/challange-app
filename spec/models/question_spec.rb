@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Question do
 
- let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:user) }
   before { @question = user.questions.build(title: "Lorem ipsum", contents: "dolor sit amet, consectetur adipiscing elit, sed do eiusmod") }
 
   subject { @question }
@@ -30,6 +30,9 @@ describe Question do
     it { should_not be_valid }
   end
 
-
+  describe "with a question title that's too long" do
+    before { @question.title = "a" * 61 }
+    it { should_not be_valid }
+  end
 
 end
