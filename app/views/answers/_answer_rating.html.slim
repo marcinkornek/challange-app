@@ -1,6 +1,17 @@
 span.glyphicon.glyphicon-chevron-up
 div = "#{answer.points}"
 span.glyphicon.glyphicon-chevron-down
-- if answer.accepted?
+- if accepted_answer?(answer)
   .accepted
     span.glyphicon.glyphicon-ok
+- elsif current_user?(answer.question.user)
+  / .unaccepted
+  /   span.glyphicon.glyphicon-ok
+
+
+  = form_for(@question) do |f|
+    div = f.hidden_field :accepted_answer_id, value: answer.id
+    .unaccepted
+      span.glyphicon.glyphicon-ok.js-accept
+      / input.glyphicon.glyphicon-ok type='submit' value=''
+    //= f.submit "", class: "glyphicon glyphicon-ok"

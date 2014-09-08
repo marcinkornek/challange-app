@@ -5,6 +5,8 @@
       = render "answers/answer_points", answer:answer
 
     .col-md-8
+      .title
+        = link_to wrap(answer.question.title), question_path(answer.question)
       .contents
         = truncate(answer.contents, length: 80)
       .link

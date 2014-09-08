@@ -1,6 +1,6 @@
 - provide(:title, "#{@user.username} answers ")
 h1 Answers
 
-= render 'shared/short_answers', answers:@user.answers
+= render 'shared/short_answers', answers:@answers
 
 = will_paginate @answers, renderer: BootstrapPagination::Rails

@@ -38,7 +38,7 @@
     h3 =  link_to pluralize(@user.answers.count, "Answer"), answers_user_path
 
     - if @user.answers.any?
-      = render 'shared/short_answers', answers:@user.answers
+      = render 'shared/short_answers', answers:@user.answers.limit(5)
       - if @user.answers.count > 5
         = link_to 'view more', answers_user_path
     - else

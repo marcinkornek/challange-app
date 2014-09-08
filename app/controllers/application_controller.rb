@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
     user == current_user
   end
 
+  helper_method :accepted_answer? # to use this function in views (without it can be used in controllers only!!)
+  def accepted_answer?(answer)
+    answer.id == answer.question.accepted_answer_id
+  end
+
 
   protected
 
