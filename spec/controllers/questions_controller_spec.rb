@@ -6,6 +6,7 @@ describe QuestionsController do
 
   describe "signed in user" do
     describe "can destroy own questions" do
+
     end
 
     describe "cant destroy other questions" do

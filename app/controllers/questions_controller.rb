@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
-  before_action :authenticate_user!,  only: [:new, :create, :edit, :update, :destroy]
-  before_action :question,            only: [:show, :edit, :update, :destroy]
-  before_action :correct_user,        only: [:update, :destroy]
+  before_action :authenticate_user!,  except: [:show]
+  before_action :set_question,        only:   [:show, :edit, :update, :destroy]
+  before_action :correct_user,        only:   [:update, :destroy]
 
   def index
     @questions = Question.paginate(page: params[:page], per_page: 10 )
@@ -46,7 +46,7 @@ class QuestionsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def question
+    def set_question
       @question ||= Question.find(params[:id])
     end
 

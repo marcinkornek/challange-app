@@ -1,7 +1,7 @@
 - provide(:title, @question.title)
 
 .question id="question-#{@question.id}"
-  h2 = @question.title
+  h2 = wrap(@question.title)
 
   div.clearfix
     .col-md-1.center

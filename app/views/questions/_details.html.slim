@@ -1,11 +1,11 @@
-table
+table.float-right
   tr
     td
       .details.timestamp
         | Posted #{time_tag(question.created_at, class:"timeago")}
         br
         '  by
-        = link_to question.user.username, user_path(question.user)
+        = link_to wrap(question.user.username), user_path(question.user)
 
     td
       = render 'shared/details_avatar', object: question

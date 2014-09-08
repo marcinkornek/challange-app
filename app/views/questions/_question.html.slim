@@ -4,7 +4,7 @@
     = pluralize(question.answers.count, 'answer')
 
   .col-md-8
-    .title= link_to question.title, question_path(question)
+    .title= link_to wrap(question.title), question_path(question)
 
   .col-md-3
     .details.align-right

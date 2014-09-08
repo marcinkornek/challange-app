@@ -2,6 +2,8 @@ class Question < ActiveRecord::Base
   belongs_to :user
   has_many :answers, dependent: :destroy
 
+  default_scope -> { order('created_at DESC') }
+
   validates :title,         presence: true,
                             length: { maximum: 60 }
   validates :contents,      presence: true
