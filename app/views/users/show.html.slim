@@ -12,16 +12,8 @@
         = gravatar_for @user, size: 130
 
     .col-md-9
-      table
-        tr
-          th  = "username:"
-          td = "#{@user.username}"
-        tr
-          th = "email:"
-          td = " #{@user.email}"
-        tr
-          th = "member for:"
-          td = "#{@user.created_at.strftime("%d %b. %Y")}"
+      = render 'user_data'
+
 
   .questions
     h3 =  link_to pluralize(@user.questions.count, "Question"), questions_user_path

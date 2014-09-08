@@ -32,7 +32,7 @@ namespace :db do
     puts "---------creating questions---------------"
     users = User.all.limit(6)
     50.times do
-      title = Faker::Lorem.sentence(3)
+      title = Faker::Lorem.sentence(1)
       contents = Faker::Lorem.sentence(20)
       users.each { |user| user.questions.create!(
                                                   title: title,

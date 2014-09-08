@@ -72,8 +72,8 @@ v 2. Question has title and contents. Title should be required.
 v 3. Answer has only contents. It should be required.
 v 4. Users can update their questions, but not answers.
 5. Users can like answers added by users. It should be visible how many likes each answer has received.
-6. Question's author can accept one answer to the question. This answer should be marked as "Accepted".
-7. No one can add new answer to a question that already has an accepted answer.
+v 6. Question's author can accept one answer to the question. This answer should be marked as "Accepted".
+v 7. No one can add new answer to a question that already has an accepted answer.
 8. Users collect points. New users get 100 points for free.
 
   Hint: Define `user.points` attribute.

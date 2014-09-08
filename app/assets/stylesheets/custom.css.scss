@@ -283,6 +283,7 @@ table {
 }
 
 /* rating */
+
 .accepted {
   color: green;
   font-size: 25px;
@@ -291,7 +292,11 @@ table {
 .unaccepted {
   color:$gray-lighter;
   font-size: 25px;
+}
 
+.accepted-question-style {
+  background: green;
+  color: white;
 }
 
 

@@ -32,14 +32,16 @@
   - else
     '  There are no answers to this question.
 
-  h2 Add answer
+  / unless @question.accepted_answer_id.nil?
 
-  = form_for [@question, @answer] do |f|
+  - if  @question.accepted_answer_id.nil?
+    h2 Add answer
+    = form_for [@question, @answer] do |f|
 
-    .field
-      = f.label :contents
-      = f.text_area :contents
-      br
+      .field
+        = f.label :contents
+        = f.text_area :contents
+        br
 
-    .actions= f.submit 'Save', class: "btn btn-primary"
+      .actions= f.submit 'Save', class: "btn btn-primary"
 

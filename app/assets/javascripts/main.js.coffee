@@ -5,6 +5,7 @@
 window.acceptAnswer = ->
   $('.js-accept').on 'click', (e) ->
     form = $(e.target).closest('form')
+    # form = $(this).closest('form')  #this also works
     form.submit()
 
 $ ->
