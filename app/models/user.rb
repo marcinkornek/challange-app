@@ -6,11 +6,8 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
-  before_save { username.downcase! }
+  # before_save { username.downcase! }
 
-
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
-  validates :email,     format: { with: VALID_EMAIL_REGEX }
 
   VALID_USERNAME_REGEX = /\A[a-z]\w*\z/i
   validates :username,  presence: true,
@@ -18,8 +15,8 @@ class User < ActiveRecord::Base
                         uniqueness: { case_sensitive: false },
                         format: { with: VALID_USERNAME_REGEX }
 
-  has_many :questions
-  has_many :answers
+  has_many :questions, dependent: :destroy
+  has_many :answers, dependent: :destroy
 
   def to_s
     email

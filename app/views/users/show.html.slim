@@ -7,7 +7,7 @@
   .profile.clearfix
     .col-md-2
       - if @user.avatar.url.present?
-        = image_tag(@user.avatar.url(:thumb))
+        = image_tag(@user.avatar.url(:medium))
       - else
         = gravatar_for @user, size: 130
 

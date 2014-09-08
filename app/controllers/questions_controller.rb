@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!,  only: [:new, :create, :edit, :update, :destroy]
+  before_action :question,            only: [:show, :edit, :update, :destroy]
+  before_action :correct_user,        only: [:update, :destroy]
 
   def index
     @questions = Question.paginate(page: params[:page], per_page: 10 )
@@ -29,15 +30,15 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    if @question.update(question_params)
-      redirect_to @question, notice: 'Question was successfully updated.'
+    if question.update(question_params)
+      redirect_to question, notice: 'Question was successfully updated.'
     else
       render :edit
     end
   end
 
   def destroy
-    @question.destroy
+    question.destroy
     redirect_to questions_url, notice: 'Question was successfully destroyed.'
   end
 
@@ -45,12 +46,18 @@ class QuestionsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_question
-      @question = Question.find(params[:id])
+    def question
+      @question ||= Question.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
       params.require(:question).permit(:title, :contents)
+    end
+
+    def correct_user
+      unless current_user?(question.user)
+        redirect_to root_url
+      end
     end
 end

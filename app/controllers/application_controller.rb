@@ -5,12 +5,19 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  helper_method :current_user? # to use this function in views (without it can be used in controllers only!!)
+  def current_user?(user)
+    user == current_user
+  end
+
+
   protected
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << [:username, :avatar]
     devise_parameter_sanitizer.for(:account_update) << [:username, :avatar, :remove_avatar]
   end
+
 
 end
 

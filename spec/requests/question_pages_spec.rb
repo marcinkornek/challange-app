@@ -50,24 +50,43 @@ describe "QuestionPages" do
       end
     end
 
-    # describe "pagination" do
-    #   before(:all) do
-    #     @user = FactoryGirl.create(:user, username: 'other_username', email: 'other_username@o2.pl')
-    #     20.times { FactoryGirl.create(:question, @user) }
-    #   end
+    describe "signed in user" do
+      # let(:user) { FactoryGirl.create(:user) }
+      let(:other_user) { FactoryGirl.create(:user) }
+      let(:user_question) { FactoryGirl.create(:question, user: user) }
+      let(:other_user_question) { FactoryGirl.create(:question, title: 'other title', user: other_user) }
 
-    #   after(:all)  { Question.delete_all }
+      # before  do
+      #   sign_out
+      #   sign_in user
+      # end
+
+      describe "can see edit and destroy links in his questions" do
+        before do
+          visit question_path(user_question)
+        end
+        it do
+          should have_content('Delete')
+          should have_content('Edit |')
+          should have_content(user_question.title)
+        end
+      end
 
 
-    #   it { should have_selector('.pagination') }
+      describe "cant see edit and destroy links in other questions" do
+        before do
+          visit question_path(other_user_question)
+        end
+        it do
+          should_not have_content('Delete')
+          should_not have_content('Edit |')
+          should have_content(other_user_question.title)
+        end
+      end
 
-    #   it "should list each question" do
-    #     Question.paginate(page: 1, per_page: 10).each do |question|
-    #       expect(page).to have_selector('li', text: question.title)
-    #       expect(page).to have_selector('div', text: question.answers.count)
-    #     end
-    #   end
-    # end
+
+    end
+
 
   end
 end

@@ -1,6 +1,7 @@
 li
   - if user.avatar.url.present?
-    = image_tag(user.avatar.url(:thumb))
+    span class="gravatar"
+      = image_tag(user.avatar.url(:thumb))
   - else
     = gravatar_for user
   = link_to user.username, user

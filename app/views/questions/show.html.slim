@@ -11,17 +11,21 @@
 
     .col-md-8
       = wrap(@question.contents)
+      - if current_user?(@question.user)
+        .links
+          = link_to 'Edit', edit_question_path(@question)
+          '  |
+          = link_to 'Delete', @question, method: :delete,
+                                         data: { confirm: "You sure?" },
+                                         title: @question.title
 
     .col-md-3
-      .links.align-right
-        = link_to 'Edit', edit_question_path(@question)
-        '  |
-        = link_to 'Delete', question_path(@question, method: :delete)
-
+      .align-right
         = render "details", question: @question
 
 
-  h2 = "#{@question.answers.count} Answers"
+  h2  = pluralize(@question.answers.count, 'Answer')
+
 
   - if @question.answers.any?
     = render @question.answers

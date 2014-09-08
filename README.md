@@ -70,7 +70,7 @@ Most of the listed features can be implemented using core mechanisms of Ruby on 
 v 1. Users need to create profiles to add questions and answers.
 v 2. Question has title and contents. Title should be required.
 v 3. Answer has only contents. It should be required.
-4. Users can update their questions, but not answers.
+v 4. Users can update their questions, but not answers.
 5. Users can like answers added by users. It should be visible how many likes each answer has received.
 6. Question's author can accept one answer to the question. This answer should be marked as "Accepted".
 7. No one can add new answer to a question that already has an accepted answer.
@@ -80,11 +80,11 @@ v 3. Answer has only contents. It should be required.
 
 9. When user's answer is accepted she receives 25 points, when liked she receives 5 points.
 10. Creating a question costs 10 points.
-11. Users can set their names and it should be displayed everywhere instead of e-mail.
+v 11. Users can set their names and it should be displayed everywhere instead of e-mail.
 
   Hint: User profiles are implemented using [devise](https://github.com/plataformatec/devise) gem. Check its documentation to find out how to handle additional attributes on registration and edit profile pages.
 
-12. Users can upload avatars which should be automatically scaled to 100x100px size.
+v 12. Users can upload avatars which should be automatically scaled to 100x100px size.
 
   Hint: Use a gem that handles file uploads and image manipulation.
 

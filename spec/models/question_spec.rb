@@ -35,4 +35,6 @@ describe Question do
     it { should_not be_valid }
   end
 
+  describe "destroying questions should destroy question answers" do
+  end
 end
