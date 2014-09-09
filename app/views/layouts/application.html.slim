@@ -13,4 +13,5 @@ html
         = render 'shared/messages'
         = yield
         = render 'shared/footer'
-
+        br
+        = debug(params) if Rails.env.development?

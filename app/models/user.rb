@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :omniauthable
   # :recoverable, :rememberable and :trackable
+  has_many :questions, dependent: :destroy
+  has_many :answers, dependent: :destroy
+
   devise :database_authenticatable, :registerable, :validatable #, :comfirmable, :recoverable, :rememberable
 
   mount_uploader :avatar, AvatarUploader
@@ -12,10 +15,6 @@ class User < ActiveRecord::Base
                         uniqueness: { case_sensitive: false },
                         format: { with: VALID_USERNAME_REGEX }
   validates_numericality_of :points, greater_than_or_equal_to: 0
-
-
-  has_many :questions, dependent: :destroy
-  has_many :answers, dependent: :destroy
 
   def to_s
     email

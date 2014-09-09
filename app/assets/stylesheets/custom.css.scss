@@ -292,6 +292,9 @@ table {
 .unaccepted {
   color:$gray-lighter;
   font-size: 25px;
+  &.hover {
+    color:#B2CCCC;
+  }
 }
 
 .accepted-question-style {

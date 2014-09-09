@@ -2,6 +2,7 @@ class Question < ActiveRecord::Base
   belongs_to :accepted_answer, class_name: "Answer"
   belongs_to :user
   has_many :answers, dependent: :destroy
+  has_one :opinion, as: :opinionable
 
   default_scope -> { order('created_at DESC') }
 
@@ -28,19 +29,9 @@ class Question < ActiveRecord::Base
     end
   end
 
-  def accepted_answer?
-    accepted_answer_id
-  end
-
-  def accepted_answer
-    # p '-----------------------'
-    # p accepted_answer_id
-    # p '-----------------------'
-    # if accepted_answer_id.nil?
-    # accepted_answer.user.points += 25
-    # accepted_answer.user.save
-    # end
-  end
+  # def accepted_answer?
+  #   accepted_answer_id
+  # end
 
   def decrement_points(points)
     user.points -= points

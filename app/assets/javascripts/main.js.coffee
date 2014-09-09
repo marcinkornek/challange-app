@@ -8,7 +8,13 @@ window.acceptAnswer = ->
     # form = $(this).closest('form')  #this also works
     form.submit()
 
+window.onHover = ->
+  $('.unaccepted').on 'mouseenter', ->
+    $(this).addClass('hover')
+  $('.unaccepted').on 'mouseleave', ->
+    $(this).removeClass('hover')
+
 $ ->
   jQuery("time.timeago").timeago()
   acceptAnswer()
-
+  onHover()

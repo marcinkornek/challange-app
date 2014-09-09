@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140908162249) do
+ActiveRecord::Schema.define(version: 20140909104054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,19 @@ ActiveRecord::Schema.define(version: 20140908162249) do
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
   add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
+
+  create_table "opinions", force: true do |t|
+    t.integer  "opinion"
+    t.integer  "opinionable_id"
+    t.string   "opinionable_type"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "opinions", ["opinionable_id", "opinionable_type", "user_id"], name: "index_opinions_on_op_id_and_op_type_and_user_id", unique: true, using: :btree
+  add_index "opinions", ["opinionable_id", "opinionable_type"], name: "index_opinions_on_opinionable_id_and_opinionable_type", using: :btree
+  add_index "opinions", ["user_id"], name: "index_opinions_on_user_id", using: :btree
 
   create_table "questions", force: true do |t|
     t.string   "title"

@@ -41,26 +41,16 @@ class QuestionsController < ApplicationController
       else
         render :edit
       end
-
-    elsif question.accepted_answer_id.nil?
+    else
+      if question.accepted_answer_id
+        user_old = Answer.find(question.accepted_answer_id).user # question.accepted_answer.user  -doesn't work
+        decrement_points(user_old)
+      end
       question.update(question_params)
       user = Answer.find(question.accepted_answer_id).user # question.accepted_answer.user  -doesn't work
       increment_points(user)
       redirect_to question, notice: 'Answer was accepted.'
-    elsif question.accepted_answer_id
-      user_old = Answer.find(question.accepted_answer_id).user # question.accepted_answer.user  -doesn't work
-      decrement_points(user_old)
-      question.update(question_params)
-      user = Answer.find(question.accepted_answer_id).user # question.accepted_answer.user  -doesn't work
-      increment_points(user)
-      # p '----------------'
-      # p user
-      # p '----------------'
-
-      redirect_to question, notice: 'Answer was accepted.'
-
     end
-
   end
 
   def destroy

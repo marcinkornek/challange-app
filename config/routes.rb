@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   root to: 'questions#index'
 
   resources :questions do
-    resources :answers, only: [:create]
+    resources :opinions
+    resources :answers, only: [:create] do
+      resources :opinions
+    end
   end
 
   resources :users, only: [:index, :show]
