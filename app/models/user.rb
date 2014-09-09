@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
                         length: { in: 4..16 },
                         uniqueness: { case_sensitive: false },
                         format: { with: VALID_USERNAME_REGEX }
-  validates_numericality_of :points, greater_than: 0
+  validates_numericality_of :points, greater_than_or_equal_to: 0
 
 
   has_many :questions, dependent: :destroy

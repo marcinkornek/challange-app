@@ -12,32 +12,55 @@ class QuestionsController < ApplicationController
   end
 
   def new
+    @title = "New question"
     @question = Question.new
   end
 
   def edit
+    @title = "Edit question"
   end
 
   def create
     # @question = Question.new(question_params)
     # @question.user = current_user
     # @question.decrement_points(10)
-    @question = Question.create(question_params)
-    if @question.save
+    # @question = Question.create(question_params)
+    @question = QuestionCreator.new.create(question_params)
+    if @question.persisted?
       redirect_to @question, notice: 'Question was successfully created.'
     else
       render :new
     end
-    # @question1 = QuestionCreator.new.create(current_user)
 
   end
 
   def update
-    if question.update(question_params)
-      redirect_to question, notice: 'Question was successfully updated.'
-    else
-      render :edit
+    if question_params[:accepted_answer_id].nil?
+      if question.update(question_params)
+        redirect_to question, notice: 'Question was successfully updated.'
+      else
+        render :edit
+      end
+
+    elsif question.accepted_answer_id.nil?
+      question.update(question_params)
+      user = Answer.find(question.accepted_answer_id).user # question.accepted_answer.user  -doesn't work
+      increment_points(user)
+      redirect_to question, notice: 'Answer was accepted.'
+    elsif question.accepted_answer_id
+      user_old = Answer.find(question.accepted_answer_id).user # question.accepted_answer.user  -doesn't work
+      decrement_points(user_old)
+      question.update(question_params)
+      user = Answer.find(question.accepted_answer_id).user # question.accepted_answer.user  -doesn't work
+      increment_points(user)
+      # p '----------------'
+      # p user
+      # p '----------------'
+
+      redirect_to question, notice: 'Answer was accepted.'
+
     end
+
   end
 
   def destroy
@@ -62,5 +85,15 @@ class QuestionsController < ApplicationController
       unless current_user?(question.user)
         redirect_to root_url
       end
+    end
+
+    def increment_points(user)
+      user.points += 25
+      user.save
+    end
+
+    def decrement_points(user)
+      user.points -= 25
+      user.save
     end
 end
