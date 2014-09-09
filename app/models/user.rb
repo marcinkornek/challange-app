@@ -6,14 +6,13 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
-  # before_save { username.downcase! }
-
-
   VALID_USERNAME_REGEX = /\A[a-z]\w*\z/i
   validates :username,  presence: true,
                         length: { in: 4..16 },
                         uniqueness: { case_sensitive: false },
                         format: { with: VALID_USERNAME_REGEX }
+  validates_numericality_of :points, greater_than: 0
+
 
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
@@ -21,4 +20,5 @@ class User < ActiveRecord::Base
   def to_s
     email
   end
+
 end

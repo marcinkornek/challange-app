@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!,  except: [:show, :index]
-  before_action :question,        only:   [:show, :edit, :update, :destroy, :accept_answer]
+  before_action :question,            only:   [:show, :edit, :update, :destroy, :accept_answer]
   before_action :correct_user,        only:   [:update, :destroy]
 
   def index
@@ -19,14 +19,17 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.new(question_params)
-    @question.user = current_user
-
+    # @question = Question.new(question_params)
+    # @question.user = current_user
+    # @question.decrement_points(10)
+    @question = Question.create(question_params)
     if @question.save
       redirect_to @question, notice: 'Question was successfully created.'
     else
       render :new
     end
+    # @question1 = QuestionCreator.new.create(current_user)
+
   end
 
   def update
@@ -42,10 +45,6 @@ class QuestionsController < ApplicationController
     redirect_to questions_url, notice: 'Question was successfully destroyed.'
   end
 
-  def accept_answer
-    @question.accepted_answer(answer)
-  end
-
 ################################################################################
 
   private
@@ -56,7 +55,7 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:title, :contents, :accepted_answer_id)
+      params.require(:question).permit(:title, :contents, :accepted_answer_id).merge(user: current_user)
     end
 
     def correct_user

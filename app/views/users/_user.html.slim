@@ -5,8 +5,10 @@ li
   - else
     = gravatar_for user
   = link_to user.username, user
-  - if user.points > 1000
-        = image_tag("superstar.jpg", size: "30x30")
-  = " (#{pluralize(user.questions.count, 'question')})"
-  = " (#{pluralize(user.points, 'point')})"
+  = " (#{user.points}"
+  - if user.points >= 1000
+      = ' '
+      = image_tag("superstar.jpg", size: "30x30")
+  = ')'
+  = " - #{pluralize(user.questions.count, 'question')}"
 

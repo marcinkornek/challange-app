@@ -60,4 +60,37 @@ describe Question do
     # end
 
   # end
+
+  describe "creating question" do
+    before do
+      @user = FactoryGirl.create(:user, points: 9)
+      @other_user = FactoryGirl.create(:user, points: 11)
+    end
+
+    context "when user has < 10 points" do
+      before do
+        @question = Question.new(title: 'title', contents: 'content', user_id: @user.id)
+      end
+      it { should_not be_valid }
+    end
+
+    context "when user has >= 10 points" do
+      before do
+        @other_question = Question.new(title: 'other title', contents: 'other content', user_id: @other_user.id)
+      end
+      it { should be_valid }
+    end
+  end
+
+  describe "updating questions" do
+    before do
+      @user = FactoryGirl.create(:user, points: 11)
+      @question = Question.create(title: 'title', contents: 'content', user_id: @user.id)
+      @question.update_attributes(contents: 'changed content')
+    end
+
+    it { should be_valid }
+    it { expect(@question.reload.contents).to eq 'changed content' }
+
+  end
 end

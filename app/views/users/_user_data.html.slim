@@ -14,5 +14,5 @@ table
 
   tr
     th
-      - if @user.points > 1000
+      - if @user.points >= 1000
         = image_tag("superstar.jpg", size: "50x50")

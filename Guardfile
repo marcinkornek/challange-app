@@ -1,4 +1,4 @@
-guard :rspec, cmd: 'bundle exec rspec --drb', all_after_pass: false do
+guard :rspec, cmd: 'bundle exec rspec --drb', all_after_pass: false, failed_mode: :none do
   watch('spec/spec_helper.rb')                        { "spec" }
   watch('config/routes.rb')                           { "spec/routing" }
   watch('app/controllers/application_controller.rb')  { "spec/controllers" }

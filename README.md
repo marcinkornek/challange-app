@@ -74,12 +74,12 @@ v 4. Users can update their questions, but not answers.
 5. Users can like answers added by users. It should be visible how many likes each answer has received.
 v 6. Question's author can accept one answer to the question. This answer should be marked as "Accepted".
 v 7. No one can add new answer to a question that already has an accepted answer.
-8. Users collect points. New users get 100 points for free.
+v 8. Users collect points. New users get 100 points for free.
 
   Hint: Define `user.points` attribute.
 
 9. When user's answer is accepted she receives 25 points, when liked she receives 5 points.
-10. Creating a question costs 10 points.
+v 10. Creating a question costs 10 points.
 v 11. Users can set their names and it should be displayed everywhere instead of e-mail.
 
   Hint: User profiles are implemented using [devise](https://github.com/plataformatec/devise) gem. Check its documentation to find out how to handle additional attributes on registration and edit profile pages.
@@ -88,7 +88,7 @@ v 12. Users can upload avatars which should be automatically scaled to 100x100px
 
   Hint: Use a gem that handles file uploads and image manipulation.
 
-13. Once a user reaches 1000 points, she receives Superstar badge that is visible on his profile page.
+v 13. Once a user reaches 1000 points, she receives Superstar badge that is visible on his profile page.
 14. Question's author receives e-mail notification when someone answers his question.
 15. User receives e-mail notification when his answer is accepted.
 16. There is a leaderboard page where users are sorted by points.

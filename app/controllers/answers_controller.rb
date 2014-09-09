@@ -6,6 +6,7 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
     @answer.user = current_user
     @answer.question = @question
+    @answer.user.points
 
     if @answer.save
       redirect_to question_path(@question), notice: "Answer was successfully created."

@@ -6,8 +6,10 @@ table.float-right
         br
         '  by
         = link_to wrap(question.user.username), user_path(question.user)
-
-        - if question.user.points > 1000
-              = image_tag("superstar.jpg", size: "20x20")
+        = " (#{question.user.points}"
+        - if question.user.points >= 1000
+            = ' '
+            = image_tag("superstar.jpg", size: "20x20")
+        = ")"
     td
       = render 'shared/details_avatar', object: question
