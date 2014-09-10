@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_question
-  before_action :answer,       only:   [:update]
+  before_action :answer,       only:   [:like_answer]
 
   def create
     @answer = Answer.new(answer_params)
@@ -16,84 +16,44 @@ class AnswersController < ApplicationController
     end
   end
 
-  def update
-    if params[:answer][:like] == 'like'
-      new_value = 1
-      dif = difference(answer, new_value)
-      p '-----------------'
-      p dif
-      p answer.id
-      p '-----------------'
-      increment_points(answer, dif)
-      if dif == 1
-        answer.create_opinion(opinion: new_value, user_id: current_user.id)
-        redirect_to question_path(@question), notice: "You like this answer."
-      elsif dif == 2
-        answer.opinion.opinion = new_value
-        answer.opinion.save
-        redirect_to question_path(@question), notice: "You like this answer."
-      else
-        redirect_to question_path(@question), notice: "You already like this answer."
-      end
-    elsif params[:answer][:like] == 'dislike'
-      new_value = -1
-      dif = difference(answer, new_value)
-      p '-----------------'
-      p dif
-      p answer.id
-      p '-----------------'
-      increment_points(answer, dif)
-      if dif == -1
-        answer.create_opinion(opinion: new_value, user_id: current_user.id)
-        redirect_to question_path(@question), notice: "You don't like this answer."
-      elsif dif == -2
-        answer.opinion.opinion = new_value
-        answer.opinion.save
-        redirect_to question_path(@question), notice: "You don't like this answer."
-      else
-        redirect_to question_path(@question), notice: "You already don't like this answer."
-      end
+  def like_answer
+    new_value = 1
+    dif = difference(answer, new_value)
+    increment_points(answer, dif)
+    if dif == 1
+      answer.opinions.create(opinion: new_value, user_id: current_user.id)
+      redirect_to question_path(@question), notice: "You like this answer."
+    elsif dif == 2
+      answer.opinions.find_by(user_id: current_user.id).update_attributes(opinion: new_value)
+      redirect_to question_path(@question), notice: "You like this answer."
+    else
+      redirect_to question_path(@question), notice: "You already like this answer."
     end
-      # Opinion.find_or_initialize_by(opinion: new_value, user_id: current_user.id)
-      # p '------------------'
-      # p dif
-      # p answer.opinion.try(:opinion)
-      # p '------------------'
-
-      # if answer.opinion.nil?
-      #   # answer.find_or_initialize
-      #   # new = 1
-      #   # diference(answer,new)
-      #   answer.create_opinion(opinion: 1, user_id: current_user.id)
-      #   increment_points(answer)
-      #   answer.update(answer_params)
-      #   redirect_to question_path(@question), notice: "You like this answer."
-      # elsif answer.opinion.opinion == -1
-      #   2.times  {increment_points(answer)}
-      #   answer.opinion.opinion = 1
-      #   answer.opinion.save
-      #   answer.update(answer_params)
-      #   redirect_to question_path(@question), notice: "You like this answer."
-      # else
-      #   redirect_to question_path(@question), notice: "You already like this answer."
-      # end
-    # elsif params[:answer][:like] == 'dislike'
-    #   if answer.opinion.nil?
-    #     answer.create_opinion(opinion: -1, user_id: current_user.id)
-    #     decrement_points(answer)
-    #     answer.update(answer_params)
-    #     redirect_to question_path(@question), notice: "You don't like this answer."
-    #   elsif answer.opinion.opinion == 1
-    #     2.times  {decrement_points(answer)}
-    #     answer.opinion.opinion = -1
-    #     answer.opinion.save
-    #     answer.update(answer_params)
-    #     redirect_to question_path(@question), notice: "You don't like this answer."
-    #   else
-    #     redirect_to question_path(@question), notice: "You already don't like this answer."
-    #   end
-    # end
+    p '-----------------'
+    p dif
+    p answer.opinions.find_by(user_id: current_user.id)
+    p '-----------------'
   end
+
+  def dislike_answer
+    new_value = -1
+    dif = difference(answer, new_value)
+    increment_points(answer, dif)
+    if dif == -1
+      answer.opinions.create(opinion: new_value, user_id: current_user.id)
+      redirect_to question_path(@question), notice: "You don't like this answer."
+    elsif dif == -2
+      answer.opinions.find_by(user_id: current_user.id).update_attributes(opinion: new_value)
+      redirect_to question_path(@question), notice: "You don't like this answer."
+    else
+      redirect_to question_path(@question), notice: "You already don't like this answer."
+    end
+    p '-----------------'
+    p dif
+    p answer.opinions.find_by(user_id: current_user.id)
+    p '-----------------'
+  end
+
 
 #######################################################################################
 
@@ -119,15 +79,8 @@ class AnswersController < ApplicationController
       answer.user.save
     end
 
-     def decrement_points(answer)
-      answer.points -= 1
-      answer.save
-      answer.user.points -= 5
-      answer.user.save
-    end
-
     def difference(answer, new_value)
-      old = answer.opinion.try(:opinion) || 0
+      old = answer.opinions.find_by(user_id: current_user.id).try(:opinion) || 0
       new_value - old
     end
 end

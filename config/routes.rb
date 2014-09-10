@@ -4,8 +4,14 @@ Rails.application.routes.draw do
   root to: 'questions#index'
 
   resources :questions do
+    member do
+      post :like_question, :dislike_question
+    end
     resources :opinions
-    resources :answers, only: [:create, :update, :like_answer, :dislike_answer] do
+    resources :answers, only: [:create] do
+      member do
+        post :like_answer, :dislike_answer
+      end
       resources :opinions
     end
   end

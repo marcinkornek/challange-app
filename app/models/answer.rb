@@ -1,7 +1,7 @@
 class Answer < ActiveRecord::Base
   belongs_to :question
   belongs_to :user
-  has_one :opinion, as: :opinionable
+  has_many :opinions, as: :opinionable
 
   validates :contents, presence: true
   validates :user_id, presence: true

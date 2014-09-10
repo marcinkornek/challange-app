@@ -1,21 +1,11 @@
-= form_for([answer.question, answer], action: :like_answer) do |f|
+= form_for(question, url: like_question_question_path(question), method: :post) do |f|
   div = f.hidden_field :like, value: 'like'
   .unaccepted
     span.glyphicon.glyphicon-chevron-up.js-accept
 
-div = "#{answer.points}"
+div = "#{question.points}"
 
-= form_for([answer.question, answer], action: :like_answer) do |f|
+= form_for(question, url: dislike_question_question_path(question), method: :post) do |f|
   div = f.hidden_field :like, value: 'dislike'
   .unaccepted
     span.glyphicon.glyphicon-chevron-down.js-accept
-
-- if accepted_answer?(answer)
-  .accepted
-    span.glyphicon.glyphicon-ok
-
-- elsif current_user?(answer.question.user)
-  = form_for(@question) do |f|
-    div = f.hidden_field :accepted_answer_id, value: answer.id
-    .unaccepted
-      span.glyphicon.glyphicon-ok.js-accept

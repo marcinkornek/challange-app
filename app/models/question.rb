@@ -2,7 +2,7 @@ class Question < ActiveRecord::Base
   belongs_to :accepted_answer, class_name: "Answer"
   belongs_to :user
   has_many :answers, dependent: :destroy
-  has_one :opinion, as: :opinionable
+  has_many :opinions, as: :opinionable
 
   default_scope -> { order('created_at DESC') }
 

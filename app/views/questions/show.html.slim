@@ -5,9 +5,7 @@
 
   div.clearfix
     .col-md-1.center
-      span.glyphicon.glyphicon-chevron-up
-      div= 'a'
-      span.glyphicon.glyphicon-chevron-down
+      = render 'questions/question_rating', question:@question
 
     .col-md-8
       = wrap(@question.contents)
@@ -28,7 +26,7 @@
 
 
   - if @question.answers.any?
-    = render @question.answers
+    = render @question.answers.order(points: :desc)
   - else
     '  There are no answers to this question.
 
