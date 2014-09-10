@@ -11,7 +11,7 @@ class OpinionsController < ApplicationController
 private
 
   def load_opinionable
-    resource, id = request.path.split('/').last(3).first(2)
+    resource, id = request.path[0...request.path.index('/opinions')].split('/').last(2)
     @opinionable = resource.singularize.classify.constantize.find(id)
   end
 

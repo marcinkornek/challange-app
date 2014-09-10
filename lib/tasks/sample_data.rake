@@ -13,7 +13,8 @@ namespace :db do
                  username: "mars124",
                  email: "mars124@o2.pl",
                  password: "asdasdasd",
-                 password_confirmation: "asdasdasd"
+                 password_confirmation: "asdasdasd",
+                 points: 1000
                  )
     99.times do |n|
       username  = "Username_#{n+1}"
@@ -23,14 +24,16 @@ namespace :db do
                    username: username,
                    email: email,
                    password: password,
-                   password_confirmation: password
+                   password_confirmation: password,
+                   points: 1000
                    )
     end
   end
 
   def make_questions
     puts "---------creating questions---------------"
-    users = User.all.limit(6)
+    users = User.all.order(:id).limit(6)
+    # puts users.pluck(:id)
     50.times do
       title = Faker::Lorem.sentence(1)
       contents = Faker::Lorem.sentence(20)
@@ -44,15 +47,16 @@ namespace :db do
   def make_answers
     puts "---------creating answers---------------"
     # questions = Question.all.limit(6)
-    users = User.all.limit(6)
+    users = User.all.order(:id).limit(6)
+    # puts users.pluck(:id)
 
     5.times do |n|
       n += 1
       contents = Faker::Lorem.sentence(100)
-      users.each { |user| user.questions.first.answers.create!(
-                                                  contents: contents,
-                                                  user_id: n
-                                                  ) }
+      users.each { |user| user.questions.each {|question| question.answers.create!(
+                                                        contents: contents,
+                                                        user_id: n
+                                                        ) }}
     end
   end
 

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :questions do
     resources :opinions
-    resources :answers, only: [:create] do
+    resources :answers, only: [:create, :update, :like_answer, :dislike_answer] do
       resources :opinions
     end
   end

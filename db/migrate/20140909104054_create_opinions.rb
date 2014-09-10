@@ -1,7 +1,7 @@
 class CreateOpinions < ActiveRecord::Migration
   def change
     create_table :opinions do |t|
-      t.integer :opinion
+      t.integer :opinion, default: 0
       t.belongs_to :opinionable, polymorphic: true
       t.integer :user_id
 
@@ -12,3 +12,5 @@ class CreateOpinions < ActiveRecord::Migration
     add_index :opinions,   :user_id
   end
 end
+
+# find_or_initialize

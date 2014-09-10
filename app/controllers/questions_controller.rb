@@ -43,8 +43,8 @@ class QuestionsController < ApplicationController
       end
     else
       if question.accepted_answer_id
-        user_old = Answer.find(question.accepted_answer_id).user # question.accepted_answer.user  -doesn't work
-        decrement_points(user_old)
+        user = Answer.find(question.accepted_answer_id).user # question.accepted_answer.user  -doesn't work
+        decrement_points(user)
       end
       question.update(question_params)
       user = Answer.find(question.accepted_answer_id).user # question.accepted_answer.user  -doesn't work

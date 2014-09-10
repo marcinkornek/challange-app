@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20140909104054) do
   add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
   create_table "opinions", force: true do |t|
-    t.integer  "opinion"
+    t.integer  "opinion",          default: 0
     t.integer  "opinionable_id"
     t.string   "opinionable_type"
     t.integer  "user_id"
