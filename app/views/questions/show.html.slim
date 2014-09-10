@@ -5,7 +5,9 @@
 
   div.clearfix
     .col-md-1.center
-      = render 'question_rating'
+      span.glyphicon.glyphicon-chevron-up
+      div= 'a'
+      span.glyphicon.glyphicon-chevron-down
 
     .col-md-8
       = wrap(@question.contents)
