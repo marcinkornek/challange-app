@@ -292,7 +292,7 @@ table {
 .unaccepted {
   color:$gray-lighter;
   font-size: 25px;
-  &.hover {
+  &:hover {
     color:#B2CCCC;
   }
 }

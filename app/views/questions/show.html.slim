@@ -1,7 +1,7 @@
 - provide(:title, @question.title)
 
-.question id="question-#{@question.id}"
-  h2 = wrap(@question.title)
+.question.no-top-border id="question-#{@question.id}"
+  h2.border-bottom = link_to wrap(@question.title), question_path(@question)
 
   div.clearfix
     .col-md-1.center
@@ -33,7 +33,7 @@
   / unless @question.accepted_answer_id.nil?
 
   - if  @question.accepted_answer_id.nil?
-    h2 Add answer
+    h2.border-bottom Add answer
     = form_for [@question, @answer] do |f|
 
       .field

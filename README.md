@@ -71,14 +71,14 @@ v 1. Users need to create profiles to add questions and answers.
 v 2. Question has title and contents. Title should be required.
 v 3. Answer has only contents. It should be required.
 v 4. Users can update their questions, but not answers.
-5. Users can like answers added by users. It should be visible how many likes each answer has received.
+v 5. Users can like answers added by users. It should be visible how many likes each answer has received.
 v 6. Question's author can accept one answer to the question. This answer should be marked as "Accepted".
 v 7. No one can add new answer to a question that already has an accepted answer.
 v 8. Users collect points. New users get 100 points for free.
 
   Hint: Define `user.points` attribute.
 
-9. When user's answer is accepted she receives 25 points, when liked she receives 5 points.
+v 9. When user's answer is accepted she receives 25 points, when liked she receives 5 points.
 v 10. Creating a question costs 10 points.
 v 11. Users can set their names and it should be displayed everywhere instead of e-mail.
 
@@ -89,8 +89,8 @@ v 12. Users can upload avatars which should be automatically scaled to 100x100px
   Hint: Use a gem that handles file uploads and image manipulation.
 
 v 13. Once a user reaches 1000 points, she receives Superstar badge that is visible on his profile page.
-14. Question's author receives e-mail notification when someone answers his question.
-15. User receives e-mail notification when his answer is accepted.
+v 14. Question's author receives e-mail notification when someone answers his question.
+v 15. User receives e-mail notification when his answer is accepted.
 16. There is a leaderboard page where users are sorted by points.
 
 17. E-mails are sent via background jobs.

@@ -12,8 +12,6 @@ nav class="navbar navbar-default navbar-fixed-top" role="navigation"
               | Account
               span.caret
             ul.dropdown-menu role="menu"
-              span = "id: #{current_user.id}"
-              br
               li= link_to "View profile", user_path(current_user)
               li= link_to "Edit profile", edit_user_registration_path
               li.divider

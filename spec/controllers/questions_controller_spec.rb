@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe QuestionsController, focus:true do
+describe QuestionsController do
 
   before do
     @user = FactoryGirl.create(:user)

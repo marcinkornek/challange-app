@@ -38,18 +38,23 @@ class QuestionsController < ApplicationController
     if question_params[:accepted_answer_id].nil?
       if question.update(question_params)
         redirect_to question, notice: 'Question was successfully updated.'
+        accepted_answer = Answer.find(question.accepted_answer_id)
+        UserMailer.accept_answer(accepted_answer).deliver
       else
         render :edit
       end
     else
       if question.accepted_answer_id
-        user = Answer.find(question.accepted_answer_id).user # question.accepted_answer.user  -doesn't work
+        accepted_answer = Answer.find(question.accepted_answer_id)
+        user = accepted_answer.user # question.accepted_answer.user  -doesn't work
         decrement_points(user)
       end
       question.update(question_params)
-      user = Answer.find(question.accepted_answer_id).user # question.accepted_answer.user  -doesn't work
+      accepted_answer = Answer.find(question.accepted_answer_id)
+      user = accepted_answer.user # question.accepted_answer.user  -doesn't work
       change_points_user(user)
       redirect_to question, notice: 'Answer was accepted.'
+      UserMailer.accept_answer(accepted_answer).deliver
     end
   end
 
