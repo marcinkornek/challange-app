@@ -11,7 +11,12 @@ h1 Sign in
     = f.label :password
     = f.password_field :password, autocomplete: "off"
 
+    = f.check_box :remember_me
+    = f.label :remember_me
+
   div
     = f.submit "Sign in", class: "btn btn-primary"
+
+
 
   div = link_to "Change your password", new_user_password_path
