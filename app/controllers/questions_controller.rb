@@ -48,8 +48,30 @@ class QuestionsController < ApplicationController
       end
       question.update(question_params)
       user = Answer.find(question.accepted_answer_id).user # question.accepted_answer.user  -doesn't work
-      increment_points_user(user)
+      change_points_user(user)
       redirect_to question, notice: 'Answer was accepted.'
+    end
+  end
+
+  def like_question
+    new_value = 1
+    dif = difference(question, new_value)
+    update_or_create(question, dif, new_value)
+    if dif == 0
+      redirect_to question_path(@question), notice: "You already like this question."
+    else
+      redirect_to question_path(@question), notice: "You like this question."
+    end
+  end
+
+  def dislike_question
+    new_value = -1
+    dif = difference(question, new_value)
+    update_or_create(question, dif, new_value)
+    if dif == 0
+      redirect_to question_path(@question), notice: "You already dislike this question."
+    else
+      redirect_to question_path(@question), notice: "You dislike this question."
     end
   end
 
@@ -57,45 +79,6 @@ class QuestionsController < ApplicationController
     question.destroy
     redirect_to questions_url, notice: 'Question was successfully destroyed.'
   end
-
-  def like_question
-    new_value = 1
-    dif = difference(question, new_value)
-    increment_points(question, dif)
-    if dif == 1
-      question.opinions.create(opinion: new_value, user_id: current_user.id)
-      redirect_to question_path(@question), notice: "You like this question."
-    elsif dif == 2
-      question.opinions.find_by(user_id: current_user.id).update_attributes(opinion: new_value)
-      redirect_to question_path(@question), notice: "You like this question."
-    else
-      redirect_to question_path(@question), notice: "You already like this question."
-    end
-    p '-----------------'
-    p dif
-    p question.opinions.find_by(user_id: current_user.id)
-    p '-----------------'
-  end
-
-  def dislike_question
-    new_value = -1
-    dif = difference(question, new_value)
-    increment_points(question, dif)
-    if dif == -1
-      question.opinions.create(opinion: new_value, user_id: current_user.id)
-      redirect_to question_path(@question), notice: "You don't like this question."
-    elsif dif == -2
-      question.opinions.find_by(user_id: current_user.id).update_attributes(opinion: new_value)
-      redirect_to question_path(@question), notice: "You don't like this question."
-    else
-      redirect_to question_path(@question), notice: "You already don't like this question."
-    end
-    p '-----------------'
-    p dif
-    p question.opinions.find_by(user_id: current_user.id)
-    p '-----------------'
-  end
-
 
 
 ################################################################################
@@ -117,7 +100,7 @@ class QuestionsController < ApplicationController
       end
     end
 
-    def increment_points_user(user)
+    def change_points_user(user)
       user.points += 25
       user.save
     end
@@ -127,7 +110,7 @@ class QuestionsController < ApplicationController
       user.save
     end
 
-    def increment_points(question, points)
+    def change_points(question, points)
       question.points += points
       question.save
       question.user.points += 5*points
@@ -137,6 +120,16 @@ class QuestionsController < ApplicationController
     def difference(question, new_value)
       old = question.opinions.find_by(user_id: current_user.id).try(:opinion) || 0
       new_value - old
+    end
+
+    def update_or_create(question, dif, new_value)
+      change_points(question, dif)
+      status = question.opinions.find_by(user_id: current_user.id)
+      if status.nil?
+        question.opinions.create(opinion: new_value, user_id: current_user.id)
+      else
+        status.update_attributes(opinion: new_value)
+      end
     end
 
 end
