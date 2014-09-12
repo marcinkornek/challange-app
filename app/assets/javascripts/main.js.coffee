@@ -8,6 +8,13 @@ window.acceptAnswer = ->
     # form = $(this).closest('form')  #this also works
     form.submit()
 
+window.userSearchAutocomplete = ->
+  $('#search').autocomplete
+    source: $('#search').data('autocomplete-source')
+    minLength: 2
+    autoFocus: true
+
 $ ->
   jQuery("time.timeago").timeago()
   acceptAnswer()
+  userSearchAutocomplete()

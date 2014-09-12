@@ -130,6 +130,9 @@ input {
   margin-bottom: 20px;
   text-align: left;
   padding-left: 3px;
+  &.inline-block {
+    display: inline-block;
+  }
 }
 
 /* users */

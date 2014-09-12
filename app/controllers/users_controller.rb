@@ -6,7 +6,11 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 20 ).order('created_at')
+    if params[:search]
+      @users = User.search(params[:search]).order("created_at DESC").paginate(page: params[:page], per_page: 20 ).order('created_at')
+    else
+      @users = User.order("created_at DESC").paginate(page: params[:page], per_page: 20 ).order('created_at')
+    end
   end
 
   def questions

@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
     email
   end
 
+  def self.search(query) #metoda jest na klasie => wywołuije się ją na klasie a nie na instancji czyli User.search
+    where("username ilike ?", "%#{query}%") # ilike zamiast like => nie jest case sensitive
+  end
+
 end
