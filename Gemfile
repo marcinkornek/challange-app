@@ -13,6 +13,7 @@ gem 'bootstrap-glyphicons'
 gem 'rmagick', '2.13.2'
 gem 'carrierwave'
 gem 'omniauth-github', '~> 1.1.2'
+gem 'omniauth-facebook'
 
 # frontend
 gem 'slim-rails'

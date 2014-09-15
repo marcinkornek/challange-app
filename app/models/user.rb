@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
 
-  devise :database_authenticatable, :registerable, :validatable, :confirmable, :recoverable, :rememberable
+  devise :database_authenticatable, :registerable, :validatable, :confirmable, :recoverable, :rememberable,
+         :omniauthable, :omniauth_providers => [:github]
 
   mount_uploader :avatar, AvatarUploader
 

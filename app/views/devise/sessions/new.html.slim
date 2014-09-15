@@ -17,6 +17,6 @@ h1 Sign in
   div
     = f.submit "Sign in", class: "btn btn-primary"
 
-
-
   div = link_to "Change your password", new_user_password_path
+
+= link_to "Sign in with GitHub", user_omniauth_authorize_path(:github)
