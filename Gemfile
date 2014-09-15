@@ -53,3 +53,7 @@ group :development, :test do
   gem 'debugger2'
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
