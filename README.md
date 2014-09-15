@@ -91,7 +91,7 @@ v 12. Users can upload avatars which should be automatically scaled to 100x100px
 v 13. Once a user reaches 1000 points, she receives Superstar badge that is visible on his profile page.
 v 14. Question's author receives e-mail notification when someone answers his question.
 v 15. User receives e-mail notification when his answer is accepted.
-16. There is a leaderboard page where users are sorted by points.
+v(users can be sorted by points or usrname) 16. There is a leaderboard page where users are sorted by points.
 
 17. E-mails are sent via background jobs.
 

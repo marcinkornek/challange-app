@@ -10,6 +10,7 @@ gem 'will_paginate-bootstrap'
 gem 'bootstrap-glyphicons'
 gem 'rmagick', '2.13.2'
 gem 'carrierwave'
+gem 'omniauth-github', '~> 1.1.2'
 
 # frontend
 gem 'slim-rails'
