@@ -326,3 +326,14 @@ table {
     background-image: url(/assets/arrow_up.png);
   }
 }
+
+
+.asc:after {
+  font-family: "Glyphicons Halflings";
+  content: "\e093";
+}
+
+.desc:after {
+  font-family: "Glyphicons Halflings";
+  content: "\e094";
+}
