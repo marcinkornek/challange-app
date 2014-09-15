@@ -15,4 +15,11 @@ module ApplicationHelper
     end
   end
 
+  def sortable(column, title = nil)
+    column ||= column.titleize
+    direction = column == sort_column && sort_direction == 'asc' ? 'desc' : 'asc'
+    link_to column.titleize, {sort: column, direction: direction}, {class: 'btn btn-default btn-sm'}
+  end
+
+
 end

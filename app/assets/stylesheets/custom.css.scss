@@ -314,3 +314,15 @@ table {
 .float-right {
   float: right;
 }
+
+.background-image {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+  &.asc {
+    background-image: url(/assets/arrow_up.png);
+  }
+  &.desc {
+    background-image: url(/assets/arrow_up.png);
+  }
+}
