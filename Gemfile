@@ -14,6 +14,7 @@ gem 'rmagick', '2.13.2'
 gem 'carrierwave'
 gem 'omniauth-github', '~> 1.1.2'
 gem 'omniauth-facebook'
+gem "omniauth-google-oauth2"
 gem 'dotenv-rails' # it's required to use .env !
 
 # frontend

@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
           :recoverable,
           :rememberable,
           :omniauthable,
-          :omniauth_providers => [:facebook]
+          :omniauth_providers => [:facebook, :github, :google_oauth2]
 
   mount_uploader :avatar, AvatarUploader
 
@@ -31,29 +31,68 @@ class User < ActiveRecord::Base
     where("username ilike ?", "%#{query}%") # ilike zamiast like => nie jest case sensitive
   end
 
-  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+  # def self.find_for_oauth(auth, signed_in_resource=nil)
+  #   user = User.where(:provider => auth.provider, :uid => auth.uid).first
+  #   if user
+  #     # p 'already registered with fb'
+  #     return user
+  #   else
+  #     registered_user = User.where(:email => auth.info.email).first
+  #     if registered_user
+  #       # p 'already registered locally'
+  #       return registered_user
+  #     else
+  #       # p 'new user'
+  #       user = User.new(username:auth.extra.raw_info.name.gsub(/ /,'_').downcase,  #gsub(regex,'what we use to change regex for')
+  #                       provider:auth.provider,
+  #                       uid:auth.uid,
+  #                       email:auth.info.email,
+  #                       password:Devise.friendly_token[0,20],
+  #                     )
+  #       user.skip_confirmation!
+  #       user.save
+  #       user
+  #     end
+  #   end
+  # end
+
+  def self.find_for_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     if user
-      # p 'already registered with fb'
+      p '---------------------------'
+      p "already registered with #{auth.provider}"
+      p '---------------------------'
       return user
     else
       registered_user = User.where(:email => auth.info.email).first
       if registered_user
-        # p 'already registered locally'
+        p '---------------------------'
+        p 'already registered locally'
+        p '---------------------------'
         return registered_user
       else
-        # p 'new user'
-        user = User.create!(username:auth.extra.raw_info.name.gsub(/ /,'_').downcase,  #gsub(regex,'what we use to change regex for')
-                            provider:auth.provider,
-                            uid:auth.uid,
-                            email:auth.info.email,
-                            password:Devise.friendly_token[0,20],
-                          )
+        p '---------------------------'
+        p 'new user'
+        p '---------------------------'
+        user = User.new(username: omniauth_username(auth),
+                        provider:auth.provider,
+                        uid:auth.uid,
+                        email:auth.info.email,
+                        password:Devise.friendly_token[0,20],
+                      )
         user.skip_confirmation!
         user.save
-        user
+        return user
       end
     end
   end
 
+  def self.omniauth_username(auth)
+    provider = auth.provider
+    if provider == 'github'
+      username = auth.info.nickname
+    else
+      username = auth.extra.raw_info.name.gsub(/ /,'_').downcase  #gsub(regex,'what we use to change regex for')
+    end
+  end
 end

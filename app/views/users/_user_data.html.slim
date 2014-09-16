@@ -1,7 +1,7 @@
 table
   tr
     th  = "username:"
-    td = "#{@user.username}"
+    td = @user.username
   tr
     th = "email:"
     td = " #{@user.email}"
@@ -11,8 +11,12 @@ table
   tr
     th = "reputation:"
     td = "#{@user.points}"
-
   tr
     th
       - if @user.points >= 1000
         = image_tag("superstar.jpg", size: "50x50")
+
+  - unless @user.provider.nil?
+    tr
+      th = "Signed in with:"
+      td = @user.provider

@@ -20,3 +20,7 @@ h1 Sign in
   div = link_to "Change your password", new_user_password_path
 
 = link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
+br
+= link_to "Sign in with GitHub", user_omniauth_authorize_path(:github)
+br
+= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2)
