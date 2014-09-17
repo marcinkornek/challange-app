@@ -9,6 +9,10 @@ class QuestionsController < ApplicationController
 
   def show
     @answer = Answer.new
+    respond_to do |format|
+      format.html # renders show.html.erb
+      format.js   # renders show.js.erb
+    end
   end
 
   def new
@@ -62,10 +66,16 @@ class QuestionsController < ApplicationController
     new_value = 1
     dif = difference(question, new_value)
     update_or_create(question, dif, new_value)
-    if dif == 0
-      redirect_to question_path(@question), notice: "You already like this question."
-    else
-      redirect_to question_path(@question), notice: "You like this question."
+
+    respond_to do |format|
+      format.html do
+        if dif == 0
+          redirect_to question_path(@question), notice: "You already like this question."
+        else
+          redirect_to question_path(@question), notice: "You like this question."
+        end
+      end
+      format.js { render :update }
     end
   end
 
@@ -73,10 +83,16 @@ class QuestionsController < ApplicationController
     new_value = -1
     dif = difference(question, new_value)
     update_or_create(question, dif, new_value)
-    if dif == 0
-      redirect_to question_path(@question), notice: "You already dislike this question."
-    else
-      redirect_to question_path(@question), notice: "You dislike this question."
+
+    respond_to do |format|
+      format.html do
+        if dif == 0
+          redirect_to question_path(@question), notice: "You already dislike this question."
+        else
+          redirect_to question_path(@question), notice: "You dislike this question."
+        end
+      end
+      format.js { render :update }
     end
   end
 

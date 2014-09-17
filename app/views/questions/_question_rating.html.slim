@@ -1,11 +1,11 @@
-= form_for(question, url: like_question_question_path(question), method: :post) do |f|
+= form_for(question, remote: true, url: like_question_question_path(question), method: :post) do |f|
   div = f.hidden_field :like, value: 'like'
   .unaccepted
     span.glyphicon.glyphicon-chevron-up.js-accept
 
-div = "#{question.points}"
+= render 'question_points', question: question
 
-= form_for(question, url: dislike_question_question_path(question), method: :post) do |f|
+= form_for(question, remote: true, url: dislike_question_question_path(question), method: :post) do |f|
   div = f.hidden_field :like, value: 'dislike'
   .unaccepted
     span.glyphicon.glyphicon-chevron-down.js-accept

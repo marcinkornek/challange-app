@@ -8,14 +8,7 @@
       = render 'questions/question_rating', question:@question
 
     .col-md-8
-      = wrap(@question.contents)
-      - if current_user?(@question.user)
-        .links
-          = link_to 'Edit', edit_question_path(@question)
-          '  |
-          = link_to 'Delete', @question, method: :delete,
-                                         data: { confirm: "You sure?" },
-                                         title: @question.title
+      = render 'question_content'
 
     .col-md-3
       .align-right
@@ -34,12 +27,4 @@
 
   - if  @question.accepted_answer_id.nil?
     h2.border-bottom Add answer
-    = form_for [@question, @answer] do |f|
-
-      .field
-        = f.label :contents
-        = f.text_area :contents
-        br
-
-      .actions= f.submit 'Save', class: "btn btn-primary"
-
+    = render 'add_answer'
