@@ -14,7 +14,13 @@ window.userSearchAutocomplete = ->
     minLength: 2
     autoFocus: true
 
+window.toggleSigninForm = ->
+  $('.challange-app').on 'click', ->
+    $('.form').slideToggle()
+    # console.log 'a'
+
 $ ->
   jQuery("time.timeago").timeago()
   acceptAnswer()
   userSearchAutocomplete()
+  toggleSigninForm()

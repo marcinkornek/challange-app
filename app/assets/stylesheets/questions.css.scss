@@ -50,3 +50,15 @@ $gray-lighter: lighten(#000, 93.5%); // #eee
 .details {
   color: $gray-light;
 }
+
+.field {
+  display: block;
+}
+
+label {
+  margin-bottom: 0px;
+}
+
+input {
+  margin-bottom: 7px;
+}

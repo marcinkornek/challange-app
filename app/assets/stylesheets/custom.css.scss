@@ -337,3 +337,27 @@ table {
   font-family: "Glyphicons Halflings";
   content: "\e094";
 }
+
+
+.challange-app {
+  background-color: #85E6CE;
+  &:hover {
+    background-color: #78CFB9;
+  }
+}
+
+.width200 {
+  width: 200px;
+}
+
+.height40 {
+  height: 40px;
+}
+
+.margin2 {
+  margin: 2px;
+}
+
+.display-none {
+  display: none;
+}

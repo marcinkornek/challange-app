@@ -26,6 +26,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
+gem "font-awesome-rails"
 
 # doc
 gem 'sdoc', '~> 0.4.0',          group: :doc
@@ -50,7 +51,7 @@ group :test do
 end
 
 group :development, :test do
-  gem 'quiet_assets' #nie wyświetla requestów o assety w logu "rails s"
+  gem 'quiet_assets' #dont show assets in "rails s" log (it's much more cleaner)
   gem 'spork-rails', '4.0.0'
   gem 'guard-spork', '1.5.0'
   gem "rspec-rails"

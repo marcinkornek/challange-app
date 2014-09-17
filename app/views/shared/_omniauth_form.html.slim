@@ -1,0 +1,20 @@
+/ = link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-facebook width200 margin2"
+a href=user_omniauth_authorize_path(:facebook) class="btn btn-facebook width200 height40 margin2 align-left"
+  / = image_tag 'fb_logo.png', size: '20x20'
+  =fa_stacked_icon "twitter", base: "square-o"
+  = "Sign #{type} with Facebook"
+br
+
+a href=user_omniauth_authorize_path(:github) class="btn btn-github width200 height40 margin2 align-left"
+  / = image_tag 'fb_logo.png', size: '20x20'
+  = fa_stacked_icon "github", base: "square-o"
+  = "Sign #{type} with Github"
+br
+
+a href=user_omniauth_authorize_path(:google_oauth2) class="btn btn-google-plus width200 height40 margin2 align-left"
+  / = image_tag 'fb_logo.png', size: '20x20'
+  = fa_stacked_icon "google-plus", base: "square-o"
+  = "Sign #{type} with Google+"
+br
+
+button class="btn btn-default challange-app width200 height40" Sign #{type} with ChallangeApp
