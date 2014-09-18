@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :answers, dependent: :destroy
 
   devise  :database_authenticatable,
+          :async,
           :registerable,
           :validatable,
           :confirmable,

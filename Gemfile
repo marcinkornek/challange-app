@@ -14,10 +14,11 @@ gem 'rmagick', '2.13.2'
 gem 'carrierwave'
 gem 'omniauth-github', '~> 1.1.2'
 gem 'omniauth-facebook'
-gem "omniauth-google-oauth2"
+gem 'omniauth-google-oauth2'
 gem 'dotenv-rails' # it's required to use .env !
 gem 'redcarpet' #Markdown format processor
-gem "figaro"
+gem 'figaro'
+gem 'sidekiq'
 
 # frontend
 gem 'slim-rails'
@@ -28,7 +29,10 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
+
+# background processing
+gem 'devise-async'
 
 # doc
 gem 'sdoc', '~> 0.4.0',          group: :doc
@@ -36,27 +40,27 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # development
 group :development do
   gem 'spring'
-  gem "better_errors"
-  gem "binding_of_caller" #better_errors gem
+  gem 'better_errors'
+  gem 'binding_of_caller' #better_errors gem
   gem 'letter_opener_web', '~> 1.2.0'
-  gem "letter_opener"
+  gem 'letter_opener'
 end
 
 # testing
 group :test do
-  gem "database_cleaner",   "~> 1.2.0"
-  gem "capybara",           github: "jnicklas/capybara" # master until rspec3 fixes are released #~> 2.2.0"
-  gem "poltergeist",        "~> 1.5.0"
-  gem "factory_girl_rails", "~> 4.2.0"
-  gem "cucumber-rails",     "~> 1.4.1", require: false
-  gem "factory_girl"
+  gem 'database_cleaner',   '~> 1.2.0'
+  gem 'capybara',           github: 'jnicklas/capybara' # master until rspec3 fixes are released #~> 2.2.0'
+  gem 'poltergeist',        '~> 1.5.0'
+  gem 'factory_girl_rails', '~> 4.2.0'
+  gem 'cucumber-rails',     '~> 1.4.1', require: false
+  gem 'factory_girl'
 end
 
 group :development, :test do
-  gem 'quiet_assets' #dont show assets in "rails s" log (it's much more cleaner)
+  gem 'quiet_assets' #dont show assets in 'rails s' log (it's much more cleaner)
   gem 'spork-rails', '4.0.0'
   gem 'guard-spork', '1.5.0'
-  gem "rspec-rails"
+  gem 'rspec-rails'
   gem 'guard-rspec', '2.5.0'
   gem 'debugger2'
 end

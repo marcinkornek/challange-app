@@ -103,52 +103,53 @@ class QuestionsController < ApplicationController
 ################################################################################
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def question
-      @question ||= Question.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def question_params
-      params.require(:question).permit(:title, :contents, :accepted_answer_id).merge(user: current_user)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def question
+    @question ||= Question.find(params[:id])
+  end
 
-    def correct_user
-      unless current_user?(question.user)
-        redirect_to root_url
-      end
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def question_params
+    params.require(:question).permit(:title, :contents, :accepted_answer_id).merge(user: current_user)
+  end
 
-    def change_points_user(user)
-      user.points += 25
-      user.save
+  def correct_user
+    unless current_user?(question.user)
+      redirect_to root_url
     end
+  end
 
-    def decrement_points(user)
-      user.points -= 25
-      user.save
-    end
+  def change_points_user(user)
+    user.points += 25
+    user.save
+  end
 
-    def change_points(question, points)
-      question.points += points
-      question.save
-      question.user.points += 5*points
-      question.user.save
-    end
+  def decrement_points(user)
+    user.points -= 25
+    user.save
+  end
 
-    def difference(question, new_value)
-      old = question.opinions.find_by(user_id: current_user.id).try(:opinion) || 0
-      new_value - old
-    end
+  def change_points(question, points)
+    question.points += points
+    question.save
+    question.user.points += 5*points
+    question.user.save
+  end
 
-    def update_or_create(question, dif, new_value)
-      change_points(question, dif)
-      status = question.opinions.find_by(user_id: current_user.id)
-      if status.nil?
-        question.opinions.create(opinion: new_value, user_id: current_user.id)
-      else
-        status.update_attributes(opinion: new_value)
-      end
+  def difference(question, new_value)
+    old = question.opinions.find_by(user_id: current_user.id).try(:opinion) || 0
+    new_value - old
+  end
+
+  def update_or_create(question, dif, new_value)
+    change_points(question, dif)
+    status = question.opinions.find_by(user_id: current_user.id)
+    if status.nil?
+      question.opinions.create(opinion: new_value, user_id: current_user.id)
+    else
+      status.update_attributes(opinion: new_value)
     end
+  end
 
 end
