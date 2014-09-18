@@ -42,8 +42,6 @@ class QuestionsController < ApplicationController
     if question_params[:accepted_answer_id].nil?
       if question.update(question_params)
         redirect_to question, notice: 'Question was successfully updated.'
-        accepted_answer = Answer.find(question.accepted_answer_id)
-        UserMailer.accept_answer(accepted_answer).deliver
       else
         render :edit
       end
