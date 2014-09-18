@@ -60,8 +60,8 @@ namespace :db do
       users.each { |user| user.questions.each {|question| question.answers.create!(
                                                         contents: contents,
                                                         user_id: n
-                                                        ) }}
+                                                        ) }
+                  }
     end
   end
-
 end
