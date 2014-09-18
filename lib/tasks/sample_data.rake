@@ -9,24 +9,28 @@ namespace :db do
 
   def make_users
     puts "---------creating users--------------------"
-    User.create!(
+    user = User.new(
                  username: "mars124",
-                 email: "mars124@o2.pl",
+                 email: "mars125@o2.pl",
                  password: "asdasdasd",
                  password_confirmation: "asdasdasd",
                  points: 1000
                  )
+    user.skip_confirmation!
+    user.save
     99.times do |n|
       username  = "Username_#{n+1}"
       email = "example-#{n+1}@railstutorial.org"
       password  = "password"
-      User.create!(
+      user = User.new(
                    username: username,
                    email: email,
                    password: password,
                    password_confirmation: password,
                    points: 1000
                    )
+      user.skip_confirmation!
+      user.save
     end
   end
 

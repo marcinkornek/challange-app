@@ -17,6 +17,7 @@ gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
 gem 'dotenv-rails' # it's required to use .env !
 gem 'redcarpet' #Markdown format processor
+gem "figaro"
 
 # frontend
 gem 'slim-rails'
