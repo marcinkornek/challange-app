@@ -14,13 +14,19 @@ window.userSearchAutocomplete = ->
     minLength: 2
     autoFocus: true
 
-window.toggleSigninForm = ->
+window.toggleSignForm = ->
   $('.challange-app').on 'click', ->
     $('.form').slideToggle()
     # console.log 'a'
+
+window.showSignForm = ->
+  if $('#user_email').val() || $('#user_username').val()
+    console.log $('#user_email').val()
+    $('.form').toggle()
 
 $ ->
   jQuery("time.timeago").timeago()
   acceptAnswer()
   userSearchAutocomplete()
-  toggleSigninForm()
+  toggleSignForm()
+  showSignForm() #shows form when username or email is present

@@ -16,6 +16,7 @@ gem 'omniauth-github', '~> 1.1.2'
 gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
 gem 'dotenv-rails' # it's required to use .env !
+gem 'redcarpet' #Markdown format processor
 
 # frontend
 gem 'slim-rails'

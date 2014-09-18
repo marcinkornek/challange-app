@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_question
-  before_action :answer,       only:   [:like_answer]
+  before_action :answer,       only:   [:like_answer, :dislike_answer]
 
   def create
     @answer = Answer.new(answer_params)
@@ -22,10 +22,15 @@ class AnswersController < ApplicationController
     dif = difference(answer, new_value)
     update_or_create(answer, dif, new_value)
 
-    if dif == 0
-      redirect_to question_path(@question, anchor: "answer-#{answer.id}"), notice: "You already like this answer."
-    else
-      redirect_to question_path(@question, anchor: "answer-#{answer.id}"), notice: "You like this answer."
+    respond_to do |format|
+      format.html do
+        if dif == 0
+          redirect_to question_path(@question, anchor: "answer-#{answer.id}"), notice: "You already like this answer."
+        else
+          redirect_to question_path(@question, anchor: "answer-#{answer.id}"), notice: "You like this answer."
+        end
+      end
+      format.js { render :update }
     end
   end
 
@@ -34,10 +39,15 @@ class AnswersController < ApplicationController
     dif = difference(answer, new_value)
     update_or_create(answer, dif, new_value)
 
-    if dif == 0
-      redirect_to question_path(@question, anchor: "answer-#{answer.id}"), notice: "You already dislike this answer."
-    else
-      redirect_to question_path(@question, anchor: "answer-#{answer.id}"), notice: "You dislike this answer."
+    respond_to do |format|
+      format.html do
+        if dif == 0
+          redirect_to question_path(@question, anchor: "answer-#{answer.id}"), notice: "You already dislike this answer."
+        else
+          redirect_to question_path(@question, anchor: "answer-#{answer.id}"), notice: "You dislike this answer."
+        end
+      end
+      format.js { render :update }
     end
   end
 

@@ -15,6 +15,11 @@ class ApplicationController < ActionController::Base
     answer.id == answer.question.accepted_answer_id
   end
 
+  helper_method :markdown
+  def markdown
+    options = [escape_html: true, hard_wrap: true, no_intra_emphasis: true, with_toc_data: true]
+    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(*options), fenced_code_blocks: true, autolink: true)
+  end
 
   protected
 

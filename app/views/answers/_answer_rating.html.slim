@@ -3,7 +3,7 @@
   .unaccepted
     span.glyphicon.glyphicon-chevron-up.js-accept
 
-div = "#{answer.points}"
+= render 'answers/answer_points', answer: answer
 
 = form_for([answer.question, answer], url: dislike_answer_question_answer_path(answer.question, answer), method: :post) do |f|
   div = f.hidden_field :like, value: 'dislike'
