@@ -11,7 +11,11 @@ class AnswersController < ApplicationController
 
     if @answer.save
       redirect_to question_path(@question), notice: "Answer was successfully created."
-      UserMailer.new_answer(@answer).deliver
+      if Rails.env.production? # in free heroku is only 1 worker
+        UserMailer.new_answer(@answer).deliver
+      else
+        NewAnswerMailWorker.perform_async(@answer.id)
+      end
     else
       redirect_to question_path(@question), alert: "There was an error when adding answer."
     end

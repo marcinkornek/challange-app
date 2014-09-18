@@ -25,10 +25,6 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    # @question = Question.new(question_params)
-    # @question.user = current_user
-    # @question.decrement_points(10)
-    # @question = Question.create(question_params)
     @question = QuestionCreator.new.create(question_params)
     if @question.persisted?
       redirect_to @question, notice: 'Question was successfully created.'
@@ -56,7 +52,11 @@ class QuestionsController < ApplicationController
       user = accepted_answer.user # question.accepted_answer.user  -doesn't work
       change_points_user(user)
       redirect_to question, notice: 'Answer was accepted.'
-      UserMailer.accept_answer(accepted_answer).deliver
+      if Rails.env.production? # in free heroku is only 1 worker
+        UserMailer.accept_answer(accepted_answer).deliver
+      else
+        AcceptedAnswerMailWorker.perform_async(accepted_answer.id)
+      end
     end
   end
 

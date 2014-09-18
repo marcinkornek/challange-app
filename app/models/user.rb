@@ -35,21 +35,12 @@ class User < ActiveRecord::Base
   def self.find_for_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     if user
-      p '---------------------------'
-      p "already registered with #{auth.provider}"
-      p '---------------------------'
       return user
     else
       registered_user = User.where(:email => auth.info.email).first
       if registered_user
-        p '---------------------------'
-        p 'already registered locally'
-        p '---------------------------'
         return registered_user
       else
-        p '---------------------------'
-        p 'new user'
-        p '---------------------------'
         user = User.new(username: omniauth_username(auth),
                         provider:auth.provider,
                         uid:auth.uid,
@@ -68,7 +59,7 @@ class User < ActiveRecord::Base
     if provider == 'github'
       username = auth.info.nickname
     else
-      username = auth.extra.raw_info.name.gsub(/ /,'_').downcase  #gsub(regex,'what we use to change regex for')
+      username = auth.extra.raw_info.name.gsub(/ /,'_').downcase  #gsub(changes regex / / into '_')
     end
   end
 end
