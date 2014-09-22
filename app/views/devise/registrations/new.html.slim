@@ -24,10 +24,10 @@ h1 Sign up
       label= f.label :password_confirmation
       = f.password_field :password_confirmation, autocomplete: 'off'
 
-    .field
-      = f.label :avatar do
-        = f.file_field :avatar
-        = f.hidden_field :avatar_cache
+    / .field
+    /   = f.label :avatar do
+    /     = f.file_field :avatar
+    /     = f.hidden_field :avatar_cache
 
     div
       = f.submit "Sign up", class: "btn btn-primary"
