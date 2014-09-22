@@ -1,1 +1,1 @@
-// $('.answer-points').replaceWith('<%= j render("answer_points", answer: @answer) %>');
+$('.answer-points-<%= @answer.id  %>').replaceWith('<%= j render("answer_points", answer: @answer) %>');

@@ -24,9 +24,13 @@ window.showSignForm = ->
     console.log $('#user_email').val()
     $('.form').toggle()
 
+# window.showAnchorContent = ->
+
+
 $ ->
   jQuery("time.timeago").timeago()
   acceptAnswer()
   userSearchAutocomplete()
   toggleSignForm()
   showSignForm() #shows form when username or email is present
+  # showAnchorContent()

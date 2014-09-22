@@ -1,5 +1,6 @@
 
-.answer id="answer-#{answer.id}"
+.answer
+  div id="answer-#{answer.id}" style="position:relative;top:-40px;"
   .col-md-1.center
     div = render "answers/answer_rating", answer:answer
 

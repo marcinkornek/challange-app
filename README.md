@@ -93,7 +93,7 @@ v 14. Question's author receives e-mail notification when someone answers his qu
 v 15. User receives e-mail notification when his answer is accepted.
 v(users can be sorted by points or usrname) 16. There is a leaderboard page where users are sorted by points.
 
-17. E-mails are sent via background jobs.
+v 17. E-mails are sent via background jobs.
 
   Often in production environments, time consuming tasks are performed in background, not during user's request. Sending e-mails is such a task because it involves communication with remote servers which may be slow or may not respond. We do not want to make our user wait that long for the response, so we need to respond immediately as if the e-mail has been succesfully sent, but send it in background.
   
@@ -101,11 +101,11 @@ v 18. Users can login using their GitHub accounts.
 
   People don't like passwords. To make it easy for them many sites allow logging in with Facebook, Twitter or GitHub accounts in a secure way. We're going to use just GitHub.
   
-19. Liking answers should not reload the page.
+v 19. Liking answers should not reload the page.
 
   Let's improve user experience a bit. When user likes an answer he should immediately see the result without reloading the whole page. Hint: Try using jQuery javascript library to perform AJAX requests.
   
-20. Questions and aswers can be written in Markdown format.
+v 20. Questions and aswers can be written in Markdown format.
 
   This `README` file is in Markdown. GitHub automatically formats it and displays a nice readable HTML, we want the same with question and answer contents.
 
