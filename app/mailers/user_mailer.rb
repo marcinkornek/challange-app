@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "no-reply@challangeapp.com"
 
   def accept_answer(accepted_answer)
     @accepted_answer = accepted_answer

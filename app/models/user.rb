@@ -2,21 +2,32 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :omniauthable
   # :recoverable, :rememberable and :trackable
-  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h # adds getter & setter :crop_x.. etc (necessary when undefined method error)
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h, :login # adds getter & setter :crop_x.. etc (necessary when undefined method error)
   after_update :crop_avatar
 
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
 
-  devise  :database_authenticatable,
-          :async,
-          :registerable,
-          :validatable,
-          :confirmable,
-          :recoverable,
-          :rememberable,
-          :omniauthable,
-          :omniauth_providers => [:facebook, :github, :google_oauth2]
+  if Rails.env.production?
+    devise  :database_authenticatable,
+            :registerable,
+            :validatable,
+            :confirmable,
+            :recoverable,
+            :rememberable,
+            :omniauthable,
+            :omniauth_providers => [:facebook, :github, :google_oauth2]
+  else
+    devise  :database_authenticatable,
+            :async,
+            :registerable,
+            :validatable,
+            :confirmable,
+            :recoverable,
+            :rememberable,
+            :omniauthable,
+            :omniauth_providers => [:facebook, :github, :google_oauth2]
+  end
 
   mount_uploader :avatar, AvatarUploader
 
@@ -72,7 +83,14 @@ class User < ActiveRecord::Base
     end
   end
 
-
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    else
+      where(conditions).first
+    end
+  end
 
   # def crop_x => attr_reader - getter
   # def crop_x + def crop_x=(newv) => attr_accessor - getter + setter
