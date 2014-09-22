@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :omniauthable
   # :recoverable, :rememberable and :trackable
-  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h # adds empty methods :crop_x.. etc (necessary when undefined method error)
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h # adds getter & setter :crop_x.. etc (necessary when undefined method error)
   after_update :crop_avatar
 
   has_many :questions, dependent: :destroy
