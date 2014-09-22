@@ -1,0 +1,16 @@
+h1 = 'Crop Avatar'
+
+= image_tag @user.avatar_url(:large), id: "cropbox"
+
+h4 = 'Preview'
+div style="width:100px; height:100px; overflow:hidden"
+  = image_tag @user.avatar.url(:large), id: "preview"
+
+= form_for @user, url: registration_path(@user), method: :put do |f|
+  - %w[x y w h].each do |attribute|
+    = f.text_field "crop_#{attribute}"
+  br
+
+  = f.submit "crop"
+
+// , :url => url_for(:controller => 'registrations_controller', :action => 'update')

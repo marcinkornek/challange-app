@@ -5,10 +5,10 @@
     .gravatar
       = image_tag(current_user.avatar.url(:medium))
     .field
-      .inline-block.non-bold
-        = f.label :remove_avatar
       .inline-block.check-box
         = f.check_box :remove_avatar
+      .inline-block.non-bold
+        = f.label :remove_avatar
   - else
     .bold.margin-bottom5
       = "Current gravatar"

@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :omniauthable
   # :recoverable, :rememberable and :trackable
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h # adds empty methods :crop_x.. etc (necessary when undefined method error)
+  after_update :crop_avatar
+
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
 
@@ -62,4 +65,24 @@ class User < ActiveRecord::Base
       username = auth.extra.raw_info.name.gsub(/ /,'_').downcase  #gsub(changes regex / / into '_')
     end
   end
+
+  def crop_avatar
+    if crop_x.present?
+      avatar.recreate_versions!
+    end
+  end
+
+
+
+  # def crop_x => attr_reader - getter
+  # def crop_x + def crop_x=(newv) => attr_accessor - getter + setter
+
+  # def crop_x
+  #   @crop_x
+  # end
+
+  # def crop_x=(newv)
+  #   @crop_x = newv
+  # end
+
 end

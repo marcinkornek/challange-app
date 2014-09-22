@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   helper_method :current_user? # to use this function in views (without it can be used in controllers only!!)
@@ -21,12 +20,18 @@ class ApplicationController < ActionController::Base
     @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(*options), fenced_code_blocks: true, autolink: true)
   end
 
+  ############################################
+
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << [:username, :avatar]
-    devise_parameter_sanitizer.for(:account_update) << [:username, :avatar, :remove_avatar,
-                                                        :send_new_message_email, :send_accepted_answer_email]
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password,
+      :password_confirmation, :remember_me, :avatar, :avatar_cache,
+      :crop_x, :crop_y, :crop_w, :crop_h) }
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password,
+      :password_confirmation, :current_password, :avatar, :avatar_cache,
+      :send_new_message_email, :send_accepted_answer_email,
+      :crop_x, :crop_y, :crop_w, :crop_h) }
   end
 
 

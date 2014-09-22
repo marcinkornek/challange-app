@@ -15,5 +15,6 @@
 //= require jquery.timeago
 //= require jquery-ui/autocomplete
 //= require jquery.arbitrary-anchor
+//= require jquery.Jcrop
 //= require bootstrap
 //= require_tree .

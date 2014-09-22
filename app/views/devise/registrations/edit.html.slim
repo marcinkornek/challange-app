@@ -27,7 +27,7 @@ h1 Edit Profile
   .field
     = f.label :current_password
     .hint
-      ' (we need your current password to confirm your changes)
+      ' (we need your current password to change your email or password)
     = f.password_field :current_password, autocomplete: "off"
 
   = render 'avatar', f:f
@@ -35,13 +35,13 @@ h1 Edit Profile
   .field
     .inline-block.check-box
       = f.check_box :send_new_message_email, {}, 'true', 'false'
-    .inline-block
+    .inline-block.non-bold
       = f.label :send_new_message_email, 'Send me email when new answer to my question'
 
   .field
     .inline-block.check-box
       = f.check_box :send_accepted_answer_email, {}, 'true', 'false'
-    .inline-block
+    .inline-block.non-bold
       = f.label :send_accepted_answer_email, 'Send me email when somebody accept my answer'
 
   div
