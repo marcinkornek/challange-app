@@ -254,7 +254,8 @@ table {
 }
 
 .check-box {
-  margin-left: 5px;
+  // margin-left: 5px;
+  margin-right: 5px;
 }
 
 .non-bold {
@@ -367,21 +368,4 @@ textarea {
 
 .display-none {
   display: none;
-}
-
-// a[name=anchor] {
-//   padding-top: 40px;
-//   margin-top: -40px;
-//   display: inline-block; /* required for webkit browsers */
-// }
-
-div {
-  // &.answer {
-  //   padding-top:40px;
-  //   margin-top:-40px;
-  // }
-  // &.answer:first {
-  //   padding-top:0px;
-  //   // margin-top:-40px;
-  // }
 }

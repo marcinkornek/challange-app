@@ -32,6 +32,12 @@ h1 Edit Profile
 
   = render 'avatar', f:f
 
+  .field
+    .inline-block.check-box
+      = f.check_box :send_new_message_email, {}, 'true', 'false'
+    .inline-block
+      = f.label :send_new_message_email, 'Send me email when new answer to my question'
+
   div
     = f.submit "Update", class: "btn btn-primary"
 
