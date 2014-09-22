@@ -38,6 +38,12 @@ h1 Edit Profile
     .inline-block
       = f.label :send_new_message_email, 'Send me email when new answer to my question'
 
+  .field
+    .inline-block.check-box
+      = f.check_box :send_accepted_answer_email, {}, 'true', 'false'
+    .inline-block
+      = f.label :send_accepted_answer_email, 'Send me email when somebody accept my answer'
+
   div
     = f.submit "Update", class: "btn btn-primary"
 

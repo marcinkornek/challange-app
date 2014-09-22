@@ -52,10 +52,12 @@ class QuestionsController < ApplicationController
       user = accepted_answer.user # question.accepted_answer.user  -doesn't work
       change_points_user(user)
       redirect_to question, notice: 'Answer was accepted.'
-      if Rails.env.production? # in free heroku is only 1 worker
-        UserMailer.accept_answer(accepted_answer).deliver
-      else
-        AcceptedAnswerMailWorker.perform_async(accepted_answer.id)
+      if accepted_answer.user.send_accepted_answer_email?
+        if Rails.env.production? # in free heroku is only 1 worker
+          UserMailer.accept_answer(accepted_answer).deliver
+        else
+          AcceptedAnswerMailWorker.perform_async(accepted_answer.id)
+        end
       end
     end
   end
