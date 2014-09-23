@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :username, :email, :password, :remember_me) }
 
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password,
-      :password_confirmation, :current_password, :avatar, :avatar_cache,
+      :password_confirmation, :current_password, :avatar, :avatar_cache, :remove_avatar,
       :send_new_message_email, :send_accepted_answer_email, :crop_x, :crop_y, :crop_w, :crop_h) }
   end
 
