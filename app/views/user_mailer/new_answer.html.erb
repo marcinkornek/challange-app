@@ -1,0 +1,3 @@
+<h2> Your have new answer to question <%= "'#{@question.title}'" %> </h2>
+<hr>
+<p> <%= link_to 'Link to question', question_url(@question.id, anchor: "answer-#{@answer.id}") %> </p>

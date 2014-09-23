@@ -95,8 +95,14 @@ class User < ActiveRecord::Base
   # Overridden to notify users with password changes
   def update_with_password(params, *options)
     if super
+      if Rails.env.production? # in free heroku is only 1 worker
+        UserMailer.password_changed(self.id).deliver
+      else
+        UpdatePasswordMailWorker.perform_async(self.id)
+      end
+
+
       # TODO schedule this in the background
-      UserMailer.password_changed(self.id).deliver
     end
   end
 
