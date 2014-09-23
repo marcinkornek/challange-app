@@ -92,6 +92,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  # Overridden to notify users with password changes
+  def update_with_password(params, *options)
+    if super
+      # TODO schedule this in the background
+      UserMailer.password_changed(self.id).deliver
+    end
+  end
+
   # def crop_x => attr_reader - getter
   # def crop_x + def crop_x=(newv) => attr_accessor - getter + setter
 
