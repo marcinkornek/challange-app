@@ -10,7 +10,7 @@ namespace :db do
   def make_users
     puts "---------creating users--------------------"
     user = User.new(
-                 username: "mars124",
+                 username: "mars125",
                  email: "mars125@o2.pl",
                  password: "asdasdasd",
                  password_confirmation: "asdasdasd",

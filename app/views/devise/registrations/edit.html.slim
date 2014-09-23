@@ -24,11 +24,12 @@ h1 Edit Profile
     = f.label :password_confirmation
     = f.password_field :password_confirmation, autocomplete: "off"
 
-  .field
-    = f.label :current_password
-    .hint
-      ' (we need your current password to change your email or password)
-    = f.password_field :current_password, autocomplete: "off"
+  - if !current_user.friendly_token
+    .field
+      = f.label :current_password
+      .hint
+        ' (we need your current password to change your email or password)
+      = f.password_field :current_password, autocomplete: "off"
 
   = render 'avatar', f:f
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140922062056) do
+ActiveRecord::Schema.define(version: 20140923085521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(version: 20140922062056) do
   add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "email",                      default: "",   null: false
-    t.string   "encrypted_password",         default: "",   null: false
+    t.string   "email",                      default: "",    null: false
+    t.string   "encrypted_password",         default: "",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20140922062056) do
     t.string   "uid"
     t.boolean  "send_new_message_email",     default: true
     t.boolean  "send_accepted_answer_email", default: true
+    t.boolean  "friendly_token",             default: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
