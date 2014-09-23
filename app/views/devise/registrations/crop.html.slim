@@ -8,7 +8,7 @@ div style="width:100px; height:100px; overflow:hidden"
 
 = form_for @user, url: registration_path(@user), method: :put do |f|
   - %w[x y w h].each do |attribute|
-    = f.text_field "crop_#{attribute}"
+    = f.hidden_field "crop_#{attribute}"
   br
 
   = f.submit "crop"

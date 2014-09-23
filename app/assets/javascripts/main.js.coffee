@@ -20,7 +20,7 @@ window.toggleSignForm = ->
     # console.log 'a'
 
 window.showSignForm = ->
-  if $('#user_email').val() || $('#user_username').val()
+  if $('#user_email').val() || $('#user_username').val() || $('#user_login').val()
     console.log $('#user_email').val()
     $('.form').toggle()
 
@@ -52,7 +52,7 @@ $ ->
   acceptAnswer()
   userSearchAutocomplete()
   toggleSignForm()
-  showSignForm() #shows form when username or email is present
+  showSignForm() #shows form when username, email or login is present
   new AvatarCropper()
 
 

@@ -3,9 +3,9 @@ h2
 = form_for(resource, as: resource_name, url: user_password_path, html: { method: :post }) do |f|
   = devise_error_messages!
   div
-    = f.label :email
+    = f.label :login
     br
-    = f.email_field :email, autofocus: true
+    = f.text_field :login, autofocus: true
   div
     = f.submit "Send me reset password instructions"
 = render "devise/shared/links"
