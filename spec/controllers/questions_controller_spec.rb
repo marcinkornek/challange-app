@@ -3,8 +3,8 @@ require 'spec_helper'
 describe QuestionsController do
 
   before do
-    @user = FactoryGirl.create(:user)
-    @other_user = FactoryGirl.create(:user)
+    @user = FactoryGirl.create(:confirmed_user)
+    @other_user = FactoryGirl.create(:confirmed_user)
     @user_question = FactoryGirl.create(:question, user: @user)
     @other_user_question = FactoryGirl.create(:question, user: @other_user)
   end

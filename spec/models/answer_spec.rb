@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Answer do
 
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:confirmed_user) }
   let(:question) { FactoryGirl.create(:question) }
 
   before { @answer = question.answers.build(contents: "tempor incididunt ut labore et dolore magna aliqua.", user: user) }

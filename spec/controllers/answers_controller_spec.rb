@@ -3,7 +3,7 @@ require 'spec_helper'
 describe AnswersController do
 
   before do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryGirl.create(:confirmed_user)
     @question = FactoryGirl.create(:question, user: @user)
     @answer = FactoryGirl.create(:answer, question: @question, user: @user)
   end

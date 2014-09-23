@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Question do
 
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:confirmed_user) }
   before { @question = user.questions.build(title: "Lorem ipsum", contents: "dolor sit amet, consectetur adipiscing elit, sed do eiusmod") }
 
   subject { @question }
@@ -63,8 +63,8 @@ describe Question do
 
   describe "creating question" do
     before do
-      @user = FactoryGirl.create(:user, points: 9)
-      @other_user = FactoryGirl.create(:user, points: 11)
+      @user = FactoryGirl.create(:confirmed_user, points: 9)
+      @other_user = FactoryGirl.create(:confirmed_user, points: 11)
     end
 
     context "when user has < 10 points" do
@@ -84,7 +84,7 @@ describe Question do
 
   describe "updating questions" do
     before do
-      @user = FactoryGirl.create(:user, points: 11)
+      @user = FactoryGirl.create(:confirmed_user, points: 11)
       @question = Question.create(title: 'title', contents: 'content', user_id: @user.id)
       @question.update_attributes(contents: 'changed content')
     end

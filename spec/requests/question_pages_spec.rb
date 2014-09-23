@@ -4,7 +4,7 @@ describe "QuestionPages" do
 
   subject { page }
 
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:confirmed_user) }
   before { sign_in user }
 
   describe "question creation" do
@@ -51,8 +51,7 @@ describe "QuestionPages" do
     end
 
     describe "signed in user" do
-      # let(:user) { FactoryGirl.create(:user) }
-      let(:other_user) { FactoryGirl.create(:user) }
+      let(:other_user) { FactoryGirl.create(:confirmed_user) }
       let(:user_question) { FactoryGirl.create(:question, user: user) }
       let(:other_user_question) { FactoryGirl.create(:question, title: 'other title', user: other_user) }
 
@@ -68,7 +67,7 @@ describe "QuestionPages" do
         it do
           should have_content('Delete')
           should have_content('Edit |')
-          should have_content(user_question.title)
+          should have_content(user_question.contents)
         end
       end
 
@@ -80,7 +79,7 @@ describe "QuestionPages" do
         it do
           should_not have_content('Delete')
           should_not have_content('Edit |')
-          should have_content(other_user_question.title)
+          should have_content(other_user_question.contents)
         end
       end
 

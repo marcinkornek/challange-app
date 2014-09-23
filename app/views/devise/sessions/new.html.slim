@@ -4,7 +4,7 @@ h1 Sign in
 
 = render 'shared/omniauth_form', type: 'in'
 p
-.form.display-none.margin2
+.form.margin2
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     / = render 'shared/messages'
 

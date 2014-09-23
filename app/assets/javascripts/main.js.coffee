@@ -22,7 +22,10 @@ window.toggleSignForm = ->
 window.showSignForm = ->
   if $('#user_email').val() || $('#user_username').val() || $('#user_login').val()
     console.log $('#user_email').val()
-    $('.form').toggle()
+    $('.form').show()
+  else
+    $('.form').hide()
+
 
 class AvatarCropper
   constructor: ->
