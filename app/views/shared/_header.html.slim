@@ -2,7 +2,12 @@ nav class="navbar navbar-default navbar-fixed-top" role="navigation"
   div class="container"
 
     = link_to "Challenge App", root_path, id: 'logo'
-      / span = "id: #{current_user.id}"
+
+    - if user_signed_in? && current_user.notifications.any?
+      /= link_to I18n.t("notifications.#{current_user.notifications.first.notification}", user: current_user.notifications.first.answer_id), '#'
+      = link_to "You have #{pluralize current_user.notifications.count, 'notification'}", user_notifications_path(current_user.id)
+
+
     ul class="nav pull-right"
       li= link_to "Questions", questions_path
       li= link_to "Users", users_path

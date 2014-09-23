@@ -7,7 +7,6 @@ class Question < ActiveRecord::Base
   default_scope -> { order('created_at DESC') }
 
   before_create :decrement_points10
-  before_update :accepted_answer
 
   validate :validate_points, on: :create
   validates :title,         presence: true,
@@ -29,18 +28,8 @@ class Question < ActiveRecord::Base
     end
   end
 
-  # def accepted_answer?
-  #   accepted_answer_id
-  # end
-
   def decrement_points(points)
     user.points -= points
     user.save
   end
-
-  def increment_points(points)
-    user.points += points
-    user.save
-  end
-
 end

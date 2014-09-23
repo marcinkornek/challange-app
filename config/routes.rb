@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "users/registrations" }
 
   root to: 'questions#index'
@@ -16,12 +17,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:index, :show]
+  resources :users,         only: [:index, :show]
 
   resources :users do
     member do
       get :questions, :answers
     end
+    resources :notifications, only: [:index]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

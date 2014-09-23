@@ -14,6 +14,7 @@ describe User do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:answers) }
   it { should respond_to(:questions) }
+  it { should respond_to(:notifications) }
 
   describe "when email format is invalid" do
     it "should be invalid" do

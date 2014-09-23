@@ -11,6 +11,7 @@ class AnswersController < ApplicationController
 
     if @answer.save
       redirect_to question_path(@question), notice: "Answer was successfully created."
+      notifications(@question.user.id, @answer.id)
       if @answer.question.user.send_new_message_email?
         if Rails.env.production? # in free heroku is only 1 worker
           UserMailer.new_answer(@answer).deliver
@@ -95,6 +96,13 @@ class AnswersController < ApplicationController
     else
       status.update_attributes(opinion: new_value)
     end
+  end
+
+  def notifications(question_user_id, new_answer_id)
+    user = User.find(question_user_id)
+    answer = Answer.find(new_answer_id)
+    question = answer.question
+    user.notifications.create(answer_id: answer.id, question_id: question.id, notification: 'new_answer')
   end
 
 end

@@ -21,3 +21,6 @@
 
 en:
   hello: "Hello world"
+  notifications:
+    accepted_answer: '%{user} accepted your answer'
+    new_answer: "%{user} added new answer to your question '%{question}'"

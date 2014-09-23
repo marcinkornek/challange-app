@@ -51,6 +51,7 @@ class QuestionsController < ApplicationController
       accepted_answer = Answer.find(question.accepted_answer_id)
       user = accepted_answer.user # question.accepted_answer.user  -doesn't work
       change_points_user(user)
+      notifications(accepted_answer.user.id, accepted_answer.id)
       redirect_to question, notice: 'Answer was accepted.'
       if accepted_answer.user.send_accepted_answer_email?
         if Rails.env.production? # in free heroku is only 1 worker
@@ -152,6 +153,13 @@ class QuestionsController < ApplicationController
     else
       status.update_attributes(opinion: new_value)
     end
+  end
+
+  def notifications(accepted_answer_user_id, accepted_answer_id)
+    user = User.find(accepted_answer_user_id)
+    answer = Answer.find(accepted_answer_id)
+    question = answer.question
+    user.notifications.create(answer_id: answer.id, question_id: question.id, notification: 'accepted_answer')
   end
 
 end
