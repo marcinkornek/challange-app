@@ -9,8 +9,8 @@ h1 Sign in
     / = render 'shared/messages'
 
     .field
-      = f.label :login
-      = f.text_field :login, autofocus: true
+      = f.label :email
+      = f.text_field :email, autofocus: true
 
     .field
       = f.label :password
@@ -26,3 +26,4 @@ h1 Sign in
 
     div = link_to "Change your password", new_user_password_path
 
+    = link_to 'Resend confirmation instructions', new_user_confirmation_path

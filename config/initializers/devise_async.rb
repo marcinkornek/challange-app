@@ -1,5 +1,5 @@
 # Supported options: :resque, :sidekiq, :delayed_job, :queue_classic, :torquebox, :backburner
-if Rails.env.production?
+if Rails.env.development?
   Devise::Async.backend = :sidekiq
   Devise::Async.queue   = :default
 end
