@@ -3,6 +3,9 @@
 h1 Notifications
 
 - @notifications.each do |notification|
-  = link_to I18n.t("notifications.#{notification.notification}", user: Question.find(notification.question_id).user.username, question: Question.find(notification.question_id).title),  question_path(notification.question_id)
+  = link_to 'Delete ', user_notification_path(notification.user, notification), method: :delete, data: { confirm: "You sure?" }
+
+  = link_to I18n.t("notifications.#{notification.notification}", user: Question.find(notification.question_id).user.username, question: truncate(Question.find(notification.question_id).title, length: 15)),  question_path(notification.question_id)
   br
-   /= link_to I18n.t("notifications.#{current_user.notifications.first.notification}", user: current_user.notifications.first.answer_id), '#'
+
+= link_to 'Delete ', delete_all_notifications_path, method: :delete, data: { confirm: "You sure?" }

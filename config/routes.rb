@@ -23,8 +23,11 @@ Rails.application.routes.draw do
     member do
       get :questions, :answers
     end
-    resources :notifications, only: [:index]
+    resources :notifications, only: [:index, :destroy]
+
   end
+
+  delete 'delete_all_notifications', to: 'notifications#destroy_all', as: :delete_all_notifications
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
