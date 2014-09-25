@@ -16,5 +16,8 @@
 //= require jquery-ui/autocomplete
 //= require jquery.arbitrary-anchor
 //= require jquery.Jcrop
+//= require gritter
+//= require pusher.min
+//= require PusherNotifier
 //= require bootstrap
 //= require_tree .

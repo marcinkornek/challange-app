@@ -17,8 +17,10 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails' # it's required to use .env !
 gem 'redcarpet' #Markdown format processor
-gem 'figaro'
-gem 'sidekiq'
+gem 'figaro' #menage application.yml file with secret keys, works with pusher too
+gem 'sidekiq' #backend server
+gem 'pusher' #realtime push notifications
+gem 'gritter'
 
 # frontend
 gem 'slim-rails'

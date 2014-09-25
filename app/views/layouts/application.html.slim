@@ -6,6 +6,13 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+
+    - if user_signed_in?
+      javascript:
+        window.userId = "#{current_user.id}"
+        window.userChannel = "private-channel-#{current_user.id}"
+        window.pusherKey = "#{Pusher.key}"
+
   body
     .container
       .row

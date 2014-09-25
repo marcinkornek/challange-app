@@ -162,4 +162,9 @@ class QuestionsController < ApplicationController
     user.notifications.create(answer_id: answer.id, question_id: question.id, notification: 'accepted_answer')
   end
 
+  def pusher_notification(user_id)
+    Pusher["private-channel-#{user.id}"].trigger('notification', {'message' => 'NEW MESSAGE!'})
+  end
+
+
 end

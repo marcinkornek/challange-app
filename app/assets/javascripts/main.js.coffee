@@ -50,6 +50,17 @@ class AvatarCropper
       marginLeft: '-' + Math.round(100/coords.w * coords.x) + 'px'
       marginTop: '-' + Math.round(100/coords.h * coords.y) + 'px'
 
+  # window.pusher = ->
+  #   pusher = new Pusher(ENV["pusher_key"])
+  #   privateChannel = pusher.subscribe('privateNotifications')
+  #   channel.bind "my-event", (data) ->
+  #     alert "An event was triggered with message: " + data.message
+
+  window.pusherNotifier = ->
+    pusher = new Pusher(pusherKey)
+    privateChannel = pusher.subscribe(userChannel)
+    notifier = new PusherNotifier(privateChannel)
+
 $ ->
   jQuery("time.timeago").timeago()
   acceptAnswer()
@@ -57,7 +68,7 @@ $ ->
   toggleSignForm()
   showSignForm() #shows form when username, email or login is present
   new AvatarCropper()
-
-
+  # pusher()
+  pusherNotifier()
 
 
