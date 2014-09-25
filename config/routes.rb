@@ -29,6 +29,8 @@ Rails.application.routes.draw do
 
   delete 'delete_all_notifications', to: 'notifications#destroy_all', as: :delete_all_notifications
 
+  post 'pusher/auth', to: 'pusher#auth', as: :pusher_auth
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

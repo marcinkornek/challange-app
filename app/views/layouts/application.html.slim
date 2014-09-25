@@ -10,7 +10,7 @@ html
     - if user_signed_in?
       javascript:
         window.userId = "#{current_user.id}"
-        window.userChannel = "private-channel-#{current_user.id}"
+        window.userChannel = "private-user-#{current_user.id}"
         window.pusherKey = "#{Pusher.key}"
 
   body

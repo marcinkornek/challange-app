@@ -12,6 +12,7 @@ class AnswersController < ApplicationController
     if @answer.save
       redirect_to question_path(@question), notice: "Answer was successfully created."
       notifications(@question.user.id, @answer.id)
+      pusher_notification(@question.user.id, @answer.question.id, @answer.user.id)
       if @answer.question.user.send_new_message_email?
         if Rails.env.production? # in free heroku is only 1 worker
           UserMailer.new_answer(@answer).deliver
@@ -103,6 +104,20 @@ class AnswersController < ApplicationController
     answer = Answer.find(new_answer_id)
     question = answer.question
     user.notifications.create(answer_id: answer.id, question_id: question.id, notification: 'new_answer')
+  end
+
+  def pusher_notification(question_user_id, question_id, new_answer_user_id)
+    @new_answer_user = User.find(new_answer_user_id)
+    @question = Question.find(question_id)
+    @question_user = User.find(question_user_id)
+    @last_notification = @question_user.notifications.last
+    Pusher["private-user-#{@question_user.id}"].trigger('notification',
+                     {'message' =>
+                      I18n.t("notifications.#{@last_notification.notification}",
+                      user: @new_answer_user.username,
+                      question: @question.title)
+                     })
+
   end
 
 end

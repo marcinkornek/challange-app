@@ -52,6 +52,7 @@ class QuestionsController < ApplicationController
       user = accepted_answer.user # question.accepted_answer.user  -doesn't work
       change_points_user(user)
       notifications(accepted_answer.user.id, accepted_answer.id)
+      pusher_notification(accepted_answer.user.id, accepted_answer.id)
       redirect_to question, notice: 'Answer was accepted.'
       if accepted_answer.user.send_accepted_answer_email?
         if Rails.env.production? # in free heroku is only 1 worker
@@ -162,8 +163,16 @@ class QuestionsController < ApplicationController
     user.notifications.create(answer_id: answer.id, question_id: question.id, notification: 'accepted_answer')
   end
 
-  def pusher_notification(user_id)
-    Pusher["private-channel-#{user.id}"].trigger('notification', {'message' => 'NEW MESSAGE!'})
+  def pusher_notification(accepted_answer_user_id, accepted_answer_id)
+    @accepted_answer_user = User.find(accepted_answer_user_id)
+    @last_notification = @accepted_answer_user.notifications.last
+    Pusher["private-user-#{accepted_answer_user_id}"].trigger('notification',
+                     {'message' =>
+                      I18n.t("notifications.#{@last_notification.notification}",
+                      user: Question.find(@last_notification.question_id).user.username,
+                      question: Question.find(@last_notification.question_id).title)
+                     })
+
   end
 
 
