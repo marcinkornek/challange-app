@@ -136,9 +136,9 @@ input {
   }
 }
 
-/* users */
+/* index */
 
-.users {
+.users, .notification {
   list-style: none;
   margin: 0;
   li {
@@ -152,6 +152,19 @@ input {
     }
   }
 }
+
+.notification {
+  li {
+    font-size: 15px;
+    .read {
+      a {
+        color: gray;
+      }
+
+    }
+  }
+}
+
 
 .hint {
   color: $gray-light;

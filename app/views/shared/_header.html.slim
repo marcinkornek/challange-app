@@ -7,8 +7,8 @@ nav class="navbar navbar-default navbar-fixed-top" role="navigation"
       / = link_to "You have #{pluralize current_user.notifications.count, 'notification'}", user_notifications_path(current_user.id)
       span.nav.nav-pills.nav-stacked.inline-block
         li.active
-          a href= user_notifications_path(current_user.id)
-            span.badge.pull-right #{current_user.notifications.count}
+          a href= notifications_path
+            span.badge.pull-right #{current_user.notifications.where(read: false).count}
             'Notifications
 
     ul class="nav pull-right"

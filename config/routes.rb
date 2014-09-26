@@ -23,11 +23,14 @@ Rails.application.routes.draw do
     member do
       get :questions, :answers
     end
-    resources :notifications, only: [:index, :destroy]
+    # resources :notifications, only: [:index, :update] #:destroy]
 
   end
 
-  delete 'delete_all_notifications', to: 'notifications#destroy_all', as: :delete_all_notifications
+  resources :notifications, only: [:index, :update] #:destroy]
+  post 'update_all_notifications', to: 'notifications#update_all', as: :update_all_notifications
+
+  # delete 'delete_all_notifications', to: 'notifications#destroy_all', as: :delete_all_notifications
 
   post 'pusher/auth', to: 'pusher#auth', as: :pusher_auth
 

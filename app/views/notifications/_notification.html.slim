@@ -1,1 +1,15 @@
-= notification
+/= link_to 'Delete ', user_notification_path(notification.user, notification), method: :delete, data: { confirm: "You sure?" }
+
+.div.clearfix
+  li
+    .col-md-9
+      - if notification.read
+        .read
+          = link_to I18n.t("notifications.#{notification.notification}", user: Question.find(notification.question_id).user.username, question: truncate(Question.find(notification.question_id).title, length: 15)),  question_path(notification.question_id)
+      - else
+        = link_to I18n.t("notifications.#{notification.notification}", user: Question.find(notification.question_id).user.username, question: truncate(Question.find(notification.question_id).title, length: 15)), notification_path(notification.id), data: {method: :put}
+        / controller: :notifications_controller, action: :update, id: notification.id, method: :put
+
+
+    .col-md-3.align-right
+      = time_tag(notification.created_at, class:"timeago")

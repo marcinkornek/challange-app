@@ -2,10 +2,7 @@
 
 h1 Notifications
 
-- @notifications.each do |notification|
-  = link_to 'Delete ', user_notification_path(notification.user, notification), method: :delete, data: { confirm: "You sure?" }
+.notification
+  = render @notifications.order(created_at: :desc)
 
-  = link_to I18n.t("notifications.#{notification.notification}", user: Question.find(notification.question_id).user.username, question: truncate(Question.find(notification.question_id).title, length: 15)),  question_path(notification.question_id)
-  br
-
-= link_to 'Delete ', delete_all_notifications_path, method: :delete, data: { confirm: "You sure?" }
+= link_to 'Check all as read', update_all_notifications_path, method: :post
