@@ -14,18 +14,18 @@ describe "QuestionPages" do
 
       context 'with blank title and content' do
         it "should not create a question" do
-          expect { click_button "Save" }.not_to change(Question, :count)
+          expect { click_button "Create question" }.not_to change(Question, :count)
         end
       end
 
       context 'with blank title' do
         before { fill_in 'question_contents', with: "Lorem ipsum" }
         it "should not create a question" do
-          expect { click_button "Save" }.not_to change(Question, :count)
+          expect { click_button "Create question" }.not_to change(Question, :count)
         end
 
         describe "error messages" do
-          before { click_button "Save" }
+          before { click_button "Create question" }
           it { should have_content('error') }
         end
 
@@ -34,7 +34,7 @@ describe "QuestionPages" do
       context 'with blank content' do
         before { fill_in 'question_title', with: "Lorem ipsum" }
         it "should not create a question" do
-          expect { click_button "Save" }.not_to change(Question, :count)
+          expect { click_button "Create question" }.not_to change(Question, :count)
         end
       end
     end
@@ -46,7 +46,7 @@ describe "QuestionPages" do
       end
 
       it "should create a question" do
-        expect { click_button "Save" }.to change(Question, :count)
+        expect { click_button "Create question" }.to change(Question, :count)
       end
     end
 

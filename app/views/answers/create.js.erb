@@ -1,0 +1,7 @@
+<%= render("shared/hide_alerts") %>
+$('.js-show-answers-count h2').text('<%= pluralize(@question.answers.count, 'Answer') %>');
+// $('.js-show-answers').hide();
+$('.js-show-answers').html('<%= j render @question.answers %>');
+
+$("input[type=text], textarea").val("")
+

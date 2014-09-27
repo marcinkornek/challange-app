@@ -1,1 +1,3 @@
-$('.show-question').hide().after('<%= j render("form") %>')
+<%= render("shared/hide_alerts") %>
+$('.js-show-question').before('<h1> Edit question </h1>');
+$('.js-show-question').hide().after('<%= j render("form") %>');

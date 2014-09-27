@@ -1,7 +1,7 @@
 - provide(:title, @question.title)
 
 .question.no-top-border id="question-#{@question.id}"
-  .show-question
+  .js-show-question
     h2.border-bottom = link_to wrap(@question.title), question_path(@question)
 
     div.clearfix
@@ -16,13 +16,14 @@
           = render "details", question: @question
 
 
-  h2  = pluralize(@question.answers.count, 'Answer')
+  .js-show-answers-count
+      h2  = pluralize(@question.answers.count, 'Answer')
 
-
-  - if @question.answers.any?
-    = render @question.answers.order(points: :desc)
-  - else
-    '  There are no answers to this question.
+  .js-show-answers
+    - if @question.answers.any?
+      = render @question.answers.order(points: :desc)
+    - else
+      '  There are no answers to this question.
 
   / unless @question.accepted_answer_id.nil?
 

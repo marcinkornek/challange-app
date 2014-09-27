@@ -7,10 +7,9 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
     @answer.user = current_user
     @answer.question = @question
-    @answer.user.points
+    # @answer.user.points
 
     if @answer.save
-      redirect_to question_path(@question), notice: "Answer was successfully created."
       notifications(@question.user.id, @answer.id)
       pusher_notification(@question.user.id, @answer.question.id, @answer.user.id)
       if @answer.question.user.send_new_message_email?
@@ -20,8 +19,19 @@ class AnswersController < ApplicationController
           NewAnswerMailWorker.perform_async(@answer.id)
         end
       end
-    else
-      redirect_to question_path(@question), alert: "There was an error when adding answer."
+    end
+
+    respond_to do |format|
+      format.html do
+        if @answer.persisted?
+          redirect_to question_path(@question), notice: "Answer was successfully created."
+        else
+          redirect_to question_path(@question), alert: "There was an error when adding answer."
+        end
+      end
+      format.js do
+        render :create
+      end
     end
   end
 
