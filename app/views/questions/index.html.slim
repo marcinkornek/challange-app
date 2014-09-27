@@ -2,8 +2,8 @@
 
 h1 Questions
 .questions
-  = link_to 'New Question', new_question_path, class: "btn btn-primary"
-
+  = link_to 'New Question', new_question_path, class: "btn btn-primary", id: "new_question", remote: true
+br
   div
     = render @questions
 

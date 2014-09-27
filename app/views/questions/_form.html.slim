@@ -1,7 +1,7 @@
 = form_for @question do |f|
   = render 'shared/error_messages', object: f.object
 
-  h1 = @title
+  / h1 = @title
 
   .field
     = f.label :title
@@ -11,5 +11,5 @@
     = f.text_area :contents
 
   br
-  .actions= f.submit 'Save', class: "btn btn-primary"
+  .actions= f.submit "#{@title}", class: "btn btn-primary"
 

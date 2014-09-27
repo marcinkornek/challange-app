@@ -16,7 +16,7 @@ class QuestionsController < ApplicationController
   end
 
   def new
-    @title = "New question"
+    @title = "Create question"
     @question = Question.new
   end
 
