@@ -5,4 +5,7 @@ h1 Notifications
 .notification
   = render @notifications.order(created_at: :desc)
 
+= will_paginate @notifications, renderer: BootstrapPagination::Rails
+br
+
 = link_to 'Check all as read', update_all_notifications_path, method: :post

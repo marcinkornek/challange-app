@@ -50,16 +50,18 @@ class AvatarCropper
       marginLeft: '-' + Math.round(100/coords.w * coords.x) + 'px'
       marginTop: '-' + Math.round(100/coords.h * coords.y) + 'px'
 
-  # window.pusher = ->
-  #   pusher = new Pusher(ENV["pusher_key"])
-  #   privateChannel = pusher.subscribe('privateNotifications')
-  #   channel.bind "my-event", (data) ->
+  window.pusher = ->
+    pusher = new Pusher(pusherKey)
+    privateChannel = pusher.subscribe(userChannel)
+    channel.bind "my-event", ->
+      alert "ALERT"
   #     alert "An event was triggered with message: " + data.message
 
   window.pusherNotifier = ->
     pusher = new Pusher(pusherKey)
     privateChannel = pusher.subscribe(userChannel)
     notifier = new PusherNotifier(privateChannel)
+
 
 $ ->
   jQuery("time.timeago").timeago()

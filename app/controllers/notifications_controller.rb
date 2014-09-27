@@ -1,9 +1,9 @@
 class NotificationsController < ApplicationController
-  before_action :set_notifications
-  before_action :set_notification, only: [:update] #:destroy]
+  before_action :set_notifications, only: [:index, :update_all]
+  before_action :set_notification, only: [:update]
 
   def index
-    # @notifications = current_user.notifications
+    @notifications = @notifications.paginate(page: params[:page], per_page: 10 )
   end
 
   def update_all
@@ -17,22 +17,6 @@ class NotificationsController < ApplicationController
     @notification.update_attribute('read', true)
     redirect_to question_path(@notification.question_id)
   end
-
-  # def destroy_all
-  #   @notifications.each do |notification|
-  #     notification.destroy
-  #   end
-  #   redirect_to questions_path
-  # end
-
-  # def destroy
-  #   @notification.destroy
-  #   if @notifications.empty?
-  #     redirect_to questions_path
-  #   else
-  #     redirect_to user_notifications_path
-  #   end
-  # end
 
   #################################
 
