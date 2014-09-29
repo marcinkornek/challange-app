@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 window.acceptAnswer = ->
+  $('.js-accept').off 'click'
   $('.js-accept').on 'click', (e) ->
     form = $(e.target).closest('form')
     # form = $(this).closest('form')  #this also works

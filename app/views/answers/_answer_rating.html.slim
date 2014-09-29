@@ -10,12 +10,21 @@
   .unaccepted
     span.glyphicon.glyphicon-chevron-down.js-accept
 
-- if accepted_answer?(answer)
-  .accepted
-    span.glyphicon.glyphicon-ok
+div class= "js-rating-#{answer.id}"
+  - if accepted_answer?(answer)
+    .js-accepted-tick.accepted
+      span.glyphicon.glyphicon-ok
+    .js-unaccepted-tick.display-none
+      = form_for(@question, remote: true) do |f|
+        div = f.hidden_field :accepted_answer_id, value: answer.id
+        .unaccepted
+          span.glyphicon.glyphicon-ok.js-accept
 
-- elsif current_user?(answer.question.user)
-  = form_for(@question) do |f|
-    div = f.hidden_field :accepted_answer_id, value: answer.id
-    .unaccepted
-      span.glyphicon.glyphicon-ok.js-accept
+  - elsif current_user?(answer.question.user)
+    .js-accepted-tick.accepted.display-none
+      span.glyphicon.glyphicon-ok
+    .js-unaccepted-tick
+      = form_for(@question, remote: true) do |f|
+        div = f.hidden_field :accepted_answer_id, value: answer.id
+        .unaccepted
+          span.glyphicon.glyphicon-ok.js-accept

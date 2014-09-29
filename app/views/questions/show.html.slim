@@ -27,6 +27,7 @@
 
   / unless @question.accepted_answer_id.nil?
 
-  - if  @question.accepted_answer_id.nil?
-    h2.border-bottom Add answer
-    = render 'add_answer'
+  .js-add-answer
+    - if  @question.accepted_answer_id.nil?
+      h2.border-bottom Add answer
+      = render 'add_answer'

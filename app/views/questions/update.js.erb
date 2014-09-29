@@ -1,2 +1,6 @@
-$('.question_points').replaceWith('<%= j render("question_points", question: @question) %>');
+$('.js-add-answer').hide();
+$('.js-accepted-tick').hide()
+$('.js-unaccepted-tick').show()
 
+$('.js-rating-<%= @answer.id %>').find('.js-accepted-tick').show();
+$('.js-rating-<%= @answer.id %>').find('.js-unaccepted-tick').hide();

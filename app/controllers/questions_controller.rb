@@ -35,9 +35,9 @@ class QuestionsController < ApplicationController
   end
 
   def update
+    @answer = Answer.find(question_params[:accepted_answer_id])
     if question_params[:accepted_answer_id].nil?
       if question.update(question_params)
-        redirect_to question, notice: 'Question was successfully updated.'
       else
         render :edit
       end
@@ -53,13 +53,25 @@ class QuestionsController < ApplicationController
       change_points_user(user)
       notifications(accepted_answer.user.id, accepted_answer.id)
       pusher_notification(accepted_answer.user.id, accepted_answer.id)
-      redirect_to question, notice: 'Answer was accepted.'
       if accepted_answer.user.send_accepted_answer_email?
         if Rails.env.production? # in free heroku is only 1 worker
           UserMailer.accept_answer(accepted_answer).deliver
         else
           AcceptedAnswerMailWorker.perform_async(accepted_answer.id)
         end
+      end
+    end
+
+    respond_to do |format|
+      format.html do
+        if @answer.persisted?
+          redirect_to question, notice: 'Question was successfully updated.'
+        else
+          redirect_to question, notice: 'Answer was accepted.'
+        end
+      end
+      format.js do
+        render :update
       end
     end
   end
@@ -77,7 +89,7 @@ class QuestionsController < ApplicationController
           redirect_to question_path(@question), notice: "You like this question."
         end
       end
-      format.js { render :update }
+      format.js { render :change_points }
     end
   end
 
@@ -94,7 +106,7 @@ class QuestionsController < ApplicationController
           redirect_to question_path(@question), notice: "You dislike this question."
         end
       end
-      format.js { render :update }
+      format.js { render :change_points }
     end
   end
 

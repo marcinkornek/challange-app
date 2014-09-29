@@ -3,5 +3,5 @@ $('.js-show-answers-count h2').text('<%= pluralize(@question.answers.count, 'Ans
 // $('.js-show-answers').hide();
 $('.js-show-answers').html('<%= j render @question.answers %>');
 
-$("input[type=text], textarea").val("")
-
+$("input[type=text], textarea").val("");
+window.acceptAnswer();
