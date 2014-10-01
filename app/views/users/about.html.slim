@@ -1,0 +1,29 @@
+- provide(:title, 'About me')
+
+h1 About me
+
+div.clearfix
+  .col-md-2.center
+    = image_tag 'about.jpg', {size: "101x139", alt: "My photo"}
+
+  .col-md-10
+    = 'My name is Marcin Kornek. I am Master of Science in Civil Engineering.'
+    br
+    = 'After 5 years studies I decided to quit Civil Engineering and to start programming.'
+    br
+    = 'A day after graduation I started to learn Ruby and then Ruby on Rails and other similiars languages such like:.'
+    br
+    li= 'HTML'
+    li= 'CSS'
+    li= 'JavaScript'
+    li= 'CoffeeScript'
+    li= 'SQL'
+
+    br
+
+    = 'I learnt mainly from:'
+    li= link_to 'Learn to Program by Chris Pine',  'https://pine.fm/LearnToProgram'
+    li= link_to "Ruby on Rails Tutorial - Learn Rails by Example by Michale Hartl ", 'http://www.railstutorial.org'
+    li= link_to "RailsCasts - Ruby on Rails Screencasts by Ryan Bates ", 'http://railscasts.com'
+    li= link_to "CodeSchool ", 'https://www.codeschool.com'
+    li= link_to 'w3schools', 'http://www.w3schools.com'
