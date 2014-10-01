@@ -1,8 +1,10 @@
 - provide(:title, "#{@user.username} questions ")
 h1 Questions
 
-.questions
+- if current_user
   = link_to 'New Question', new_question_path, class: "btn btn-primary"
-= render @questions
+  br
+.question
+  = render @questions
 
 = will_paginate @questions, renderer: BootstrapPagination::Rails

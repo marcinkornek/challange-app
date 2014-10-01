@@ -2,10 +2,12 @@
 
 h1 Notifications
 
-.notification
-  = render @notifications.order(created_at: :desc)
+.notifications.clearfix
+  = form_tag make_read_notifications_path do
+    = render @notifications.order(created_at: :desc)
+    = submit_tag "Check selected as read", class: "btn btn-primary"
+    = link_to 'Check all as read', update_all_notifications_path, method: :post, class: "btn btn-primary"
 
 = will_paginate @notifications, renderer: BootstrapPagination::Rails
 br
 
-= link_to 'Check all as read', update_all_notifications_path, method: :post

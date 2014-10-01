@@ -1,8 +1,8 @@
 table.float-right
   tr
     td
-      .details.timestamp
-        | Posted #{time_tag(answer.created_at, class:"timeago")}
+      .timestamp
+        ' Posted #{time_tag(answer.created_at, class:"timeago")}
         br
         '  by
         = link_to answer.user.username, user_path(answer.user)

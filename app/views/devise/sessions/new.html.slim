@@ -16,10 +16,9 @@ p
       = f.label :password
       = f.password_field :password, autocomplete: "off"
 
-      .inline-block.check-box
-        = f.check_box :remember_me
-      .inline-block
-        = f.label :remember_me
+    .field
+      = f.check_box :remember_me
+      = f.label :remember_me
 
     div
       = f.submit "Sign in", class: "btn btn-primary"

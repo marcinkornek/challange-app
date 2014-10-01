@@ -1,8 +1,6 @@
 = form_for @question do |f|
   = render 'shared/error_messages', object: f.object
 
-  / h1 = @title
-
   .field
     = f.label :title
     = f.text_field :title

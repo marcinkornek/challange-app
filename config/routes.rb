@@ -26,6 +26,12 @@ Rails.application.routes.draw do
   end
 
   resources :notifications, only: [:index, :update] #:destroy]
+  resources :notifications do
+    collection do
+      post 'make_read', as: :make_read
+    end
+  end
+
 
   post 'update_all_notifications',    to: 'notifications#update_all',     as: :update_all_notifications
   post 'pusher/auth',                 to: 'pusher#auth',                  as: :pusher_auth

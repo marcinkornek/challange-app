@@ -35,7 +35,9 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    @answer = Answer.find(question_params[:accepted_answer_id])
+    if question_params[:accepted_answer_id]
+      @answer = Answer.find(question_params[:accepted_answer_id])
+    end
     if question_params[:accepted_answer_id].nil?
       if question.update(question_params)
       else
@@ -64,7 +66,7 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        if @answer.persisted?
+        if @question.persisted?
           redirect_to question, notice: 'Question was successfully updated.'
         else
           redirect_to question, notice: 'Answer was accepted.'
@@ -120,20 +122,9 @@ class QuestionsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def question
-    @question ||= Question.find(params[:id])
-  end
-
   # Never trust parameters from the scary internet, only allow the white list through.
   def question_params
     params.require(:question).permit(:title, :contents, :accepted_answer_id).merge(user: current_user)
-  end
-
-  def correct_user
-    unless current_user?(question.user)
-      redirect_to root_url
-    end
   end
 
   def change_points_user(user)
@@ -187,5 +178,17 @@ class QuestionsController < ApplicationController
 
   end
 
+  #before actions
+
+  # Use callbacks to share common setup or constraints between actions.
+  def question
+    @question ||= Question.find(params[:id])
+  end
+
+  def correct_user
+    unless current_user?(question.user)
+      redirect_to root_url
+    end
+  end
 
 end

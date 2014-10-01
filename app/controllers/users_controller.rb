@@ -24,9 +24,6 @@ class UsersController < ApplicationController
 
   private
 
-  def set_user
-    @user = User.find(params[:id])
-  end
 
   def sort_column
     # params[:sort] || 'username'
@@ -38,5 +35,10 @@ class UsersController < ApplicationController
     %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
   end
 
+  # before actions
+
+  def set_user
+    @user = User.find(params[:id])
+  end
 
 end

@@ -1,7 +1,8 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_question
-  before_action :answer,       only:   [:like_answer, :dislike_answer]
+  before_action :answer,       only: [:like_answer, :dislike_answer]
+  before_action :accepted?,    only: [:create]
 
   def create
     @answer = Answer.new(answer_params)
@@ -74,14 +75,6 @@ class AnswersController < ApplicationController
 
   private
 
-  def answer
-    @answer ||= Answer.find(params[:id])
-  end
-
-  def set_question
-    @question = Question.find(params[:question_id])
-  end
-
   # Never trust parameters from the scary internet, only allow the white list through.
   def answer_params
     params.require(:answer).permit(:contents, :points)
@@ -128,6 +121,23 @@ class AnswersController < ApplicationController
                       question: @question.title)
                      })
 
+  end
+
+  # before actions
+
+  def answer
+    @answer ||= Answer.find(params[:id])
+  end
+
+  def set_question
+    @question = Question.find(params[:question_id])
+  end
+
+  def accepted?
+    @question = Question.find(params[:question_id])
+    if @question.accepted_answer_id
+      redirect_to question_path(@question) #, notice: "This question has already accepted answer - you can't add another answer."
+    end
   end
 
 end

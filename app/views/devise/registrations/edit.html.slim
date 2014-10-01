@@ -34,16 +34,12 @@ h1 Edit Profile
   = render 'avatar', f:f
 
   .field
-    .inline-block.check-box
-      = f.check_box :send_new_message_email, {}, 'true', 'false'
-    .inline-block.non-bold
-      = f.label :send_new_message_email, 'Send me email when new answer to my question'
+    = f.check_box :send_new_message_email, {}, 'true', 'false'
+    = f.label :send_new_message_email, 'Send me email when new answer to my question'
 
   .field
-    .inline-block.check-box
-      = f.check_box :send_accepted_answer_email, {}, 'true', 'false'
-    .inline-block.non-bold
-      = f.label :send_accepted_answer_email, 'Send me email when somebody accept my answer'
+    = f.check_box :send_accepted_answer_email, {}, 'true', 'false'
+    = f.label :send_accepted_answer_email, 'Send me email when somebody accept my answer'
 
   div
     = f.submit "Update", class: "btn btn-primary"
