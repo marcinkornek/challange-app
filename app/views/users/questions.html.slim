@@ -1,8 +1,8 @@
 - provide(:title, "#{@user.username} questions ")
-h1 Questions
+h1 #{@user.username} questions
 
-- if current_user
-  = link_to 'New Question', new_question_path, class: "btn btn-primary"
+- if current_user?(User.find(params[:id]))
+  = link_to 'New Question', new_question_path, class: "btn btn-primary", id: "new_question", remote: true
   br
 .question
   = render @questions

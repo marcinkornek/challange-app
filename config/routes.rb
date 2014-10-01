@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index, :update] #:destroy]
   resources :notifications do
     collection do
-      post 'make_read', as: :make_read
+      post 'update_selected', as: :update_selected
     end
   end
 

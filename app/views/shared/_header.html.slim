@@ -5,11 +5,7 @@ header
       = link_to "Challenge App", root_path, id: 'logo'
 
       - if user_signed_in?
-        span.nav.nav-pills.inline-block
-          li.active
-            a href= notifications_path
-              span.badge.pull-right #{current_user.notifications.where(read: false).count}
-              'Notifications
+        = render 'shared/notification_counter'
 
       ul.nav.pull-right
         li= link_to "Questions", questions_path
