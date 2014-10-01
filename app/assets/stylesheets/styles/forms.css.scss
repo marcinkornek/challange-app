@@ -1,0 +1,32 @@
+@import "styles/variables.css.scss";
+
+/* form */
+
+.field {
+  input {
+    text-align: left;
+    padding-left: 3px;
+  }
+  input#question_title {
+    width: 500px;
+  }
+  input[type=text], input[type=email], input[type=password] {
+    display: block;
+    width: 200px;
+    margin-bottom: 10px
+  }
+  input[type=checkbox] {
+    margin-right: 5px;
+    display: inline-block;
+  }
+  label {
+    margin-bottom: 0px;
+    display: inline-block;
+    font-weight: normal
+  }
+  textarea {
+    display: block;
+    width: 800px;
+    height: 100px;
+  }
+}

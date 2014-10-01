@@ -1,0 +1,44 @@
+@import "styles/variables.css.scss";
+
+.users, .notifications {
+  li {
+    overflow: auto;
+    padding: 5px 0;
+    border-top: 1px solid $gray-lighter;
+    display: block;
+    font-size: 20px;
+  }
+  .timestamp {
+    color: $gray-light;
+    font-size: 14px;
+  }
+}
+
+.question, .answer {
+  list-style: none;
+  margin: 0;
+  overflow: auto;
+  padding: 10px 0;
+  border-top: 1px solid $gray-lighter;
+  .timestamp {
+    color: $gray-light;
+    font-size: 14px;
+  }
+}
+
+.no-top-border {
+  border-top: none;
+}
+
+.question {
+  .title{
+    display: block;
+    font-size: 20px;
+  }
+  h2, h3 {
+    font-size: 30px;
+    text-align: left;
+    padding-bottom: 10px;
+  }
+}
+

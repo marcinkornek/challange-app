@@ -1,0 +1,186 @@
+@import "styles/variables.css.scss";
+
+/* universal */
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding-top: 40px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* text align */
+
+.align-center {
+  text-align: center;
+}
+
+
+.align-right {
+  text-align: right;
+}
+
+.align-left {
+  text-align: left;
+}
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+/* table */
+
+table {
+  th {
+    padding-right: 10px;
+    color: $gray-light;
+  }
+}
+
+/* font weight */
+
+.non-bold {
+  label {
+    font-weight: normal;
+  }
+}
+
+.bold {
+  font-weight: bold;
+}
+
+
+/* floats */
+
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
+
+/* sort users */
+
+.asc:after {
+  font-family: "Glyphicons Halflings";
+  content: "\e093";
+}
+
+.desc:after {
+  font-family: "Glyphicons Halflings";
+  content: "\e094";
+}
+
+/* Sign in/up button */
+
+.challange-app {
+  background-color: #85E6CE;
+  &:hover {
+    background-color: #78CFB9;
+  }
+}
+
+/* display type */
+
+.display-none {
+  display: none;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.block {
+  display: block;
+}
+
+/* size */
+
+.width100 {
+  width: 100%;
+}
+
+.width200 {
+  width: 200px;
+}
+
+.height40 {
+  height: 40px;
+}
+
+/* margins */
+
+.margin2 {
+  margin: 2px;
+}
+
+.margin-bottom5 {
+  margin-bottom: 5px;
+}
+
+.margin-right70 {
+  margin-right: 70px;
+}
+
+.margin-left0 {
+  margin-left: 0px;
+}
+
+.margin-top10 {
+  margin-top: 10px;
+}
+
+/* other */
+
+.hint {
+  color: $gray-light;
+  font-size: 13px;
+}
+
+.points {
+  background: green;
+  color: white;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.details {
+  color: $gray-light;
+}
+
+.border-bottom {
+  border-bottom: 1px solid $gray-lighter;
+}
+
+.read {
+  a {
+    color: gray;
+  }
+}
+
+

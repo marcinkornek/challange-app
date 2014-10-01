@@ -1,0 +1,23 @@
+@import "styles/variables.css.scss";
+
+/* footer */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid $gray-light;
+  color: $gray-light;
+  a {
+    color: $gray;
+    &:hover {
+      color: $gray-darker;
+    }
+  }
+  small {
+    float: left;
+  }
+  li {
+    float: right;
+    list-style: none;
+  }
+}

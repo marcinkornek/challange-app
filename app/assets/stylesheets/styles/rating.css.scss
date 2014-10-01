@@ -1,0 +1,21 @@
+@import "styles/variables.css.scss";
+
+/* rating */
+
+.accepted {
+  color: green;
+  font-size: 25px;
+}
+
+.unaccepted {
+  color:$gray-lighter;
+  font-size: 25px;
+  &:hover {
+    color:#B2CCCC;
+  }
+}
+
+.accepted-question-style {
+  background: green;
+  color: white;
+}

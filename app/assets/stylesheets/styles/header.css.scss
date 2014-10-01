@@ -1,0 +1,33 @@
+@import "styles/variables.css.scss";
+
+/* header */
+
+header {
+  #logo {
+    float: left;
+    margin-right: 10px;
+    font-size: 1.7em;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    padding-top: 9px;
+    font-weight: bold;
+    line-height: 1;
+    &:hover {
+      color: gray;
+      text-decoration: none;
+    }
+  }
+
+  .navbar {
+    min-height: 40px;
+    max-height: 40px;
+    li {
+      display: inline-block;
+    }
+    .inline-block {
+      display: inline-block;
+    }
+  }
+}
+
