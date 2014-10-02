@@ -20,7 +20,8 @@ gem 'redcarpet' #Markdown format processor
 gem 'figaro' #menage application.yml file with secret keys, works with pusher too
 gem 'sidekiq' #backend server
 gem 'pusher' #realtime push notifications
-gem 'gritter'
+gem 'gritter' # JQuery growl-like notification plugin
+gem 'fog', '~> 1.23.0' # Ruby cloud services library
 
 # frontend
 gem 'slim-rails'

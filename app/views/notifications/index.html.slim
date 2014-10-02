@@ -5,8 +5,9 @@ h1 Notifications
 .notifications.clearfix
   = form_tag update_selected_notifications_path, remote: true do
     = render @notifications
-    = submit_tag "Check selected as read", class: "btn btn-primary"
-    = link_to 'Check all as read', update_all_notifications_path, method: :post, remote: true,  class: "btn btn-primary"
+    - if @notifications.any?
+      = submit_tag "Check selected as read", class: "btn btn-primary"
+      = link_to 'Check all as read', update_all_notifications_path, method: :post, remote: true,  class: "btn btn-primary"
 
 = will_paginate @notifications, renderer: BootstrapPagination::Rails
 br
