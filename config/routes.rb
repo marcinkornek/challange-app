@@ -35,8 +35,9 @@ Rails.application.routes.draw do
 
   post 'update_all_notifications',    to: 'notifications#update_all',     as: :update_all_notifications
   post 'pusher/auth',                 to: 'pusher#auth',                  as: :pusher_auth
-  match '/about',                     to: 'users#about',           via: 'get'
-
+  match '/about',                     to: 'users#about',                  via: 'get'
+  get 'tags/:tag',                    to: 'questions#index',              as: :tag
+  get '/tags',                        to: 'questions#tags',                   as: :tags
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

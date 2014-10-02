@@ -4,6 +4,11 @@
   .field
     = f.label :title
     = f.text_field :title
+
+  .field
+    = f.label :tag_list, "Tags (separated by commas)"
+    = f.text_field :tag_list
+
   .field
     = f.label :contents
     = f.text_area :contents

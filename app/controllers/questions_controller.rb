@@ -4,7 +4,11 @@ class QuestionsController < ApplicationController
   before_action :correct_user,        only:   [:update, :destroy]
 
   def index
-    @questions = Question.paginate(page: params[:page], per_page: 10 )
+    if params[:tag]
+      @questions = Question.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 10 )
+    else
+      @questions = Question.paginate(page: params[:page], per_page: 10 )
+    end
   end
 
   def show
@@ -117,6 +121,10 @@ class QuestionsController < ApplicationController
     redirect_to questions_url, notice: 'Question was successfully destroyed.'
   end
 
+  def tags
+
+  end
+
 
 ################################################################################
 
@@ -124,7 +132,7 @@ class QuestionsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def question_params
-    params.require(:question).permit(:title, :contents, :accepted_answer_id).merge(user: current_user)
+    params.require(:question).permit(:title, :contents, :accepted_answer_id, :tag_list).merge(user: current_user)
   end
 
   def change_points_user(user)

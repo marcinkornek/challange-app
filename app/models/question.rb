@@ -4,6 +4,8 @@ class Question < ActiveRecord::Base
   has_many :answers, dependent: :destroy
   has_many :opinions, as: :opinionable
 
+  acts_as_taggable
+
   default_scope -> { order('created_at DESC') }
 
   before_create :decrement_points10

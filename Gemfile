@@ -22,6 +22,7 @@ gem 'sidekiq' #backend server
 gem 'pusher' #realtime push notifications
 gem 'gritter' # JQuery growl-like notification plugin
 gem 'fog', '~> 1.23.0' # Ruby cloud services library
+gem 'acts-as-taggable-on', '~> 3.4' # tagging
 
 # frontend
 gem 'slim-rails'
