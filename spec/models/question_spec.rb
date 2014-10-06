@@ -12,6 +12,10 @@ describe Question do
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }
   it { should respond_to(:answers) }
+  it { should respond_to(:points) }
+  it { should respond_to(:accepted_answer_id) }
+  it { should respond_to(:user_id) }
+  it { should respond_to(:opinions) }
 
   it { should be_valid }
 

@@ -15,6 +15,13 @@ describe User do
   it { should respond_to(:answers) }
   it { should respond_to(:questions) }
   it { should respond_to(:notifications) }
+  it { should respond_to(:avatar) }
+  it { should respond_to(:points) }
+  it { should respond_to(:send_new_message_email) }
+  it { should respond_to(:send_accepted_answer_email) }
+  it { should respond_to(:friendly_token) }
+  it { should respond_to(:provider) }
+  it { should respond_to(:uid) }
 
   describe "when email format is invalid" do
     it "should be invalid" do

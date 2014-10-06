@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Answer do
 
-  let(:user) { FactoryGirl.create(:confirmed_user) }
-  let(:question) { FactoryGirl.create(:question) }
+  let(:user)      { FactoryGirl.create(:confirmed_user) }
+  let(:question)  { FactoryGirl.create(:question) }
 
   before { @answer = question.answers.build(contents: "tempor incididunt ut labore et dolore magna aliqua.", user: user) }
 
@@ -15,6 +15,7 @@ describe Answer do
   it { should respond_to(:user) }
   it { should respond_to(:question) }
   it { should respond_to(:points) }
+  it { should respond_to(:opinions) }
 
   it { should be_valid }
 
