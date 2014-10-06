@@ -40,25 +40,44 @@ describe "QuestionPages" do
     end
 
     describe "with valid information" do
-      before do
-        fill_in 'question_contents',  with: "Lorem ipsum"
-        fill_in 'question_title',     with: "Lorem ipsum"
+      context 'without tags' do
+        before do
+          fill_in 'question_contents',  with: "Lorem ipsum"
+          fill_in 'question_title',     with: "Lorem ipsum"
+        end
+
+        it "should create a question" do
+          expect { click_button "Create question" }.to change(Question, :count)
+        end
       end
 
-      it "should create a question" do
-        expect { click_button "Create question" }.to change(Question, :count)
+      context 'with tags' do
+        before do
+          fill_in 'question_contents',  with: "Lorem ipsum"
+          fill_in 'question_title',     with: "Lorem ipsum"
+          fill_in 'question_tag_list',  with: "Rails"
+        end
+
+        it "should create a question" do
+          expect { click_button "Create question" }.to change(Question, :count)
+        end
+
+        describe "can see tags links in his questions" do
+          before do
+            click_button "Create question"
+          end
+
+          it { should have_content('Tags: Rails') }
+          it { should have_link('Tags', href: tags_path) }
+          it { should have_link('Rails', href: tag_path('Rails')) }
+        end
       end
     end
 
     describe "signed in user" do
-      let(:other_user) { FactoryGirl.create(:confirmed_user) }
-      let(:user_question) { FactoryGirl.create(:question, user: user) }
+      let(:other_user)          { FactoryGirl.create(:confirmed_user) }
+      let(:user_question)       { FactoryGirl.create(:question, user: user) }
       let(:other_user_question) { FactoryGirl.create(:question, title: 'other title', user: other_user) }
-
-      # before  do
-      #   sign_out
-      #   sign_in user
-      # end
 
       describe "can see edit and destroy links in his questions" do
         before do
@@ -70,7 +89,6 @@ describe "QuestionPages" do
           should have_content(user_question.contents)
         end
       end
-
 
       describe "cant see edit and destroy links in other questions" do
         before do
