@@ -6,6 +6,11 @@ class NotificationsController < ApplicationController
     @notifications = @notifications.paginate(page: params[:page], per_page: 10 ).order(created_at: :desc)
   end
 
+  def update
+    @notification.update_attribute('read', true)
+    redirect_to question_path(@notification.question_id)
+  end
+
   def update_all
     @notifications.each do |notification|
       notification.update_attribute('read', true)
@@ -14,11 +19,6 @@ class NotificationsController < ApplicationController
       format.html { redirect_to notifications_path }
       format.js   { render :update_all }
     end
-  end
-
-  def update
-    @notification.update_attribute('read', true)
-    redirect_to question_path(@notification.question_id)
   end
 
   def update_selected

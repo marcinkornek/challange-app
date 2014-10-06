@@ -1,5 +1,5 @@
 span.nav.nav-pills.inline-block
   li.active
     a href= notifications_path
-      span.badge.pull-right #{current_user.notifications.where(read: false).count}
+      span.badge.pull-right.js-notif-count #{current_user.notifications.where(read: false).count}
       'Notifications

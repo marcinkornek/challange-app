@@ -1,2 +1,3 @@
 $("input:checked").parent().parent().addClass('read');
 $("input:checked").attr('checked', false);
+$('.js-notif-count').text(' <%= current_user.notifications.where(read: false).count %>')

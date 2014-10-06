@@ -54,7 +54,7 @@ class AvatarCropper
   window.pusher = ->
     pusher = new Pusher(pusherKey)
     privateChannel = pusher.subscribe(userChannel)
-    channel.bind "my-event", ->
+    privateChannel.bind "my-event", ->
       alert "ALERT"
   #     alert "An event was triggered with message: " + data.message
 
@@ -62,6 +62,12 @@ class AvatarCropper
     pusher = new Pusher(pusherKey)
     privateChannel = pusher.subscribe(userChannel)
     notifier = new PusherNotifier(privateChannel)
+    privateChannel.bind('notification', (data) ->
+      # $.get()
+      old = parseInt($('.js-notif-count').text(), 10)
+      $('.js-notif-count').text(old + 1)
+      # console.log data
+    )
 
 
 $ ->

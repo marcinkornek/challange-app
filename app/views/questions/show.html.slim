@@ -10,6 +10,8 @@
 
       .col-md-8
         = render 'question_content'
+        = render 'question_tags', question: @question
+        = render 'question_edit_delete'
 
       .col-md-3
         .align-right

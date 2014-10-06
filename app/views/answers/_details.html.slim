@@ -6,10 +6,7 @@ table.float-right
         br
         '  by
         = link_to answer.user.username, user_path(answer.user)
-        = " (#{answer.user.points}"
-        - if answer.user.points >= 1000
-            = ' '
-            = image_tag("superstar.jpg", size: "20x20")
-        = ")"
+        span id="js-user-points-answer-#{answer.id}"
+          = render 'shared/user_points', object: answer
     td
       = render 'shared/details_avatar', object: answer

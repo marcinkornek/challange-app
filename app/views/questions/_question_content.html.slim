@@ -1,8 +1,1 @@
 = markdown.render(@question.contents).html_safe
-- if current_user?(@question.user)
-  .links
-    = link_to 'Edit', edit_question_path(@question), id: 'edit_question', remote: true
-    '  |
-    = link_to 'Delete', @question, method: :delete,
-                                   data: { confirm: "You sure?" },
-                                   title: @question.title

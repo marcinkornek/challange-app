@@ -38,7 +38,7 @@ class QuestionsController < ApplicationController
 
   end
 
-  def update
+  def update # accept_answer
     if question_params[:accepted_answer_id]
       @answer = Answer.find(question_params[:accepted_answer_id])
     end

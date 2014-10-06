@@ -4,3 +4,9 @@ $('.js-unaccepted-tick').show()
 
 $('.js-rating-<%= @answer.id %>').find('.js-accepted-tick').show();
 $('.js-rating-<%= @answer.id %>').find('.js-unaccepted-tick').hide();
+
+<% @answer.question.answers.each do |answer| %>
+  $("#js-user-points-answer-<%= answer.id %>").html("<%= j render('shared/user_points', object: answer) %>")
+<% end %>
+
+

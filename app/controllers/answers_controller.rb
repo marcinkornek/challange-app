@@ -8,7 +8,6 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
     @answer.user = current_user
     @answer.question = @question
-    # @answer.user.points
 
     if @answer.save
       notifications(@question.user.id, @answer.id)
