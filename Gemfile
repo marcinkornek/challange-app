@@ -18,7 +18,7 @@ gem 'omniauth-google-oauth2'
 gem 'dotenv-rails' # it's required to use .env !
 gem 'redcarpet' #Markdown format processor
 gem 'figaro' #menage application.yml file with secret keys, works with pusher too
-gem 'sidekiq' #backend server
+gem 'sidekiq' #backend server - works only in development, needs Redis server and Sidekiq server running
 gem 'pusher' #realtime push notifications
 gem 'gritter' # JQuery growl-like notification plugin
 gem 'fog', '~> 1.23.0' # Ruby cloud services library
@@ -58,6 +58,7 @@ group :test do
   gem 'factory_girl_rails', '~> 4.2.0'
   gem 'cucumber-rails',     '~> 1.4.1', require: false
   gem 'factory_girl'
+  gem 'pusher-fake'
 end
 
 group :development, :test do
