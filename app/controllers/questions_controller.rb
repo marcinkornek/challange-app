@@ -29,6 +29,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
+    @title = "Create question"
     @question = QuestionCreator.new.create(question_params)
     if @question.persisted?
       redirect_to @question, notice: 'Question was successfully created.'
@@ -39,13 +40,14 @@ class QuestionsController < ApplicationController
   end
 
   def update # accept_answer
+    @title = "Edit question"
     if question_params[:accepted_answer_id]
       @answer = Answer.find(question_params[:accepted_answer_id])
     end
     if question_params[:accepted_answer_id].nil?
       if question.update(question_params)
       else
-        render :edit
+        return render :edit
       end
     else
       if question.accepted_answer_id

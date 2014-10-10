@@ -69,6 +69,13 @@ class AvatarCropper
       # console.log data
     )
 
+  window.setupRedirectToLogin = ->
+    $(document).ajaxError((xhr, response, error) ->
+      console.log response.status
+      if response.status == 401
+        window.location.href = '/users/sign_in'
+      )
+
 
 $ ->
   jQuery("time.timeago").timeago()
@@ -78,5 +85,5 @@ $ ->
   showSignForm() #shows form when username, email or login is present
   new AvatarCropper()
   pusherNotifier() if window.pusherKey
-
+  setupRedirectToLogin()
 
