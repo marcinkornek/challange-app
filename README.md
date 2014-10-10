@@ -5,7 +5,7 @@ In this app I use slim instead of erb. I use also CoffeeScript.
 
 The application is a question and answer site with features similar to [Stack Overflow](http://stackoverflow.com)
 
-### Features
+### Features to do
 
 1. Users need to create profiles to add questions and answers.
 
@@ -26,36 +26,44 @@ The application is a question and answer site with features similar to [Stack Ov
 9. When user's answer is accepted she receives 25 points, when liked she receives 5 points.
 
 10. Creating a question costs 10 points.
+
   Answers and questions points are served by AJAX.
 
 11. Users can set their names and it should be displayed everywhere instead of e-mail.
 
 12. Users can upload avatars which should be automatically scaled to 100x100px size.
+
   Users can crop avatars, they are stored on Amazon S3 cloud.
 
 13. Once a user reaches 1000 points, she receives Superstar badge that is visible on his profile page.
 
 14. Question's author receives e-mail notification when someone answers his question.
 15. User receives e-mail notification when his answer is accepted.
+
   Email notifications are optional, they could be disabled in Account settings
 
 
 16. There is a leaderboard page where users are sorted by points.
+
   Instead it is possible to sort users by Username or by Points
 
 17. E-mails are sent via background jobs.
+
   All emails are sent via background jobs. Devise mails are sent via sidekiq server and 'devise-async' gem, rest mails ('when new answer to my question' and 'when somebody accept my answer' are sent via redis server and sidekiq server - this is only avaliable in Development because free Heroku account gives only one job)
   To use async emails it is required to install and run 'redis' server -> redis-server and 'sidekiq' server -> bundle exec sidekiq
   On heroku I use SendGrid to send emails.
 
 18. Users can login using their GitHub accounts.
+
   Users can also login using their google and facebook account.
   Users can set password and then sign in with this password or using omniauth. Users who sign up without omniauth or users who already set password need old password to change it.
 
 19. Liking answers should not reload the page.
+
   Liking answers are in AJAX requests
 
 20. Questions and aswers can be written in Markdown format.
+
   I used 'redcarpet' gem
 
 
