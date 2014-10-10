@@ -77,7 +77,6 @@ $ ->
   toggleSignForm()
   showSignForm() #shows form when username, email or login is present
   new AvatarCropper()
-  # pusher()
-  pusherNotifier()
+  pusherNotifier() if window.pusherKey
 
 
