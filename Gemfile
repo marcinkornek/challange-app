@@ -15,7 +15,7 @@ gem 'carrierwave'
 gem 'omniauth-github', '~> 1.1.2'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
-gem 'dotenv-rails' # it's required to use .env !
+# gem 'dotenv-rails' # it's required to use .env !
 gem 'redcarpet' #Markdown format processor
 gem 'figaro' #menage application.yml file with secret keys, works with pusher too
 gem 'sidekiq' #backend server - works only in development, needs Redis server and Sidekiq server running
