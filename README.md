@@ -1,155 +1,73 @@
-# Challenge App
+# Ruby on Rails: Challenge App
 
-Hello, there! This is a challenge application that will test your practical knowledge of following tools:
+This is my second app. I found shell of app in github and I decided to face with it.
+In this app I use slim instead of erb. I use also CoffeeScript.
 
-* Ruby programming language
-* Ruby on Rails web framework
-* Git version control system
-
-## What to do
-
-1. Get the code
-
-  Before you start you need have [git](http://git-scm.com/) installed on your machine. If you're not familiar with it yet, just take a [CodeSchool's free course](https://www.codeschool.com/courses/try-git). It's short and fun.
-
-  When ready, clone this repository. Please do not fork it, because it would make your code visible to other challengers. We don't want this.
-  
-  Issue the following command from the console.
-
-    `git clone --origin academy https://github.com/hussar-academy/challenge_app`
-
-  If you don't have a GitHub account yet, now is the perfect time to create one. Then create a repository named `challenge_app` and push the code.
-
-    ```
-    git remote add origin git@github.com:your-username/challenge_app.git
-    git push --set-upstream origin master
-    ```
-
-2. Install ruby
-
-  The actual procedure will depend on your operating system. If you're on OS X or Linux (recommended development platforms) consider using [RVM](https://rvm.io/) or [rbenv](https://github.com/sstephenson/rbenv). On Windows [RubyInstaller](http://rubyinstaller.org/) should do the trick. Either way you'll need ruby version 2.0 or higher.
-
-3. Install dependencies
-
-  This step is as easy as running:
-
-    `bundle`
-
-  The command will install all dependent libraries that are used in the application.
-
-4. Create database
-
-  The application is set up to use SQLite database, so you may need to install it first on your system. Then fire the command:
-
-    `bundle exec rake db:create db:migrate`
-
-  It will first create an empty database and then migrate its stucture.
-
-5. Start the application
-
-  Now you should be ready to start the application. Just use the following command and the app should be running at http://localhost:3000:
-
-    `bundle exec rails server`
-
-6. Write some code and show off your work!
-
-  From now on, you're on your own. Read the Specification and Development Guidelines below and check the Resources for hints on where to look for help.
-
-  Good luck!
-
-## Specification
-
-The application is a question and answer site with features similar to [Stack Overflow](http://stackoverflow.com) but it still needs some work.
-
-**Don't worry if you're not able to complete all the features, do as many as you can.** When you're done push your code to your GitHub repository so that we can access it and test. Bonus points for deploying the application to [Heroku](http://heroku.com). Then write us an e-mail at academy@hussa.rs with the links.
-
-Most of the listed features can be implemented using core mechanisms of Ruby on Rails, reading the framework's guildelines will surely point you in right directions. Other ones may rely on external libraries (gems).
+The application is a question and answer site with features similar to [Stack Overflow](http://stackoverflow.com)
 
 ### Features
 
-v 1. Users need to create profiles to add questions and answers.
-v 2. Question has title and contents. Title should be required.
-v 3. Answer has only contents. It should be required.
-v 4. Users can update their questions, but not answers.
-v 5. Users can like answers added by users. It should be visible how many likes each answer has received.
-v 6. Question's author can accept one answer to the question. This answer should be marked as "Accepted".
-v 7. No one can add new answer to a question that already has an accepted answer.
-v 8. Users collect points. New users get 100 points for free.
+1. Users need to create profiles to add questions and answers.
 
-  Hint: Define `user.points` attribute.
+2. Question has title and contents. Title should be required.
 
-v 9. When user's answer is accepted she receives 25 points, when liked she receives 5 points.
-v 10. Creating a question costs 10 points.
-v 11. Users can set their names and it should be displayed everywhere instead of e-mail.
+3. Answer has only contents. It should be required.
 
-  Hint: User profiles are implemented using [devise](https://github.com/plataformatec/devise) gem. Check its documentation to find out how to handle additional attributes on registration and edit profile pages.
+4. Users can update their questions, but not answers.
 
-v 12. Users can upload avatars which should be automatically scaled to 100x100px size.
+5. Users can like answers added by users. It should be visible how many likes each answer has received.
 
-  Hint: Use a gem that handles file uploads and image manipulation.
+6. Question's author can accept one answer to the question. This answer should be marked as "Accepted".
 
-v 13. Once a user reaches 1000 points, she receives Superstar badge that is visible on his profile page.
-v 14. Question's author receives e-mail notification when someone answers his question.
-v 15. User receives e-mail notification when his answer is accepted.
-v(users can be sorted by points or usrname) 16. There is a leaderboard page where users are sorted by points.
+7. No one can add new answer to a question that already has an accepted answer.
 
-v (ONLY DEVELOPMENT to user it you have to install and run 'redis' server -> redis-server and 'sidekiq' server -> bundle exec sidekiq )
- 17. E-mails are sent via background jobs.
+8. Users collect points. New users get 100 points for free.
 
-  Often in production environments, time consuming tasks are performed in background, not during user's request. Sending e-mails is such a task because it involves communication with remote servers which may be slow or may not respond. We do not want to make our user wait that long for the response, so we need to respond immediately as if the e-mail has been succesfully sent, but send it in background.
-  
-v 18. Users can login using their GitHub accounts.
+9. When user's answer is accepted she receives 25 points, when liked she receives 5 points.
 
-  People don't like passwords. To make it easy for them many sites allow logging in with Facebook, Twitter or GitHub accounts in a secure way. We're going to use just GitHub.
-  
-v 19. Liking answers should not reload the page.
+10. Creating a question costs 10 points.
+  Answers and questions points are served by AJAX.
 
-  Let's improve user experience a bit. When user likes an answer he should immediately see the result without reloading the whole page. Hint: Try using jQuery javascript library to perform AJAX requests.
-  
-v 20. Questions and aswers can be written in Markdown format.
+11. Users can set their names and it should be displayed everywhere instead of e-mail.
 
-  This `README` file is in Markdown. GitHub automatically formats it and displays a nice readable HTML, we want the same with question and answer contents.
+12. Users can upload avatars which should be automatically scaled to 100x100px size.
+  Users can crop avatars, they are stored on Amazon S3 cloud.
 
-### Development Guidelines
+13. Once a user reaches 1000 points, she receives Superstar badge that is visible on his profile page.
 
-1. Create small, atomic commits.
-2. Try to use English for everything from variable names to commit messages.
-3. We're using [slim](http://slim-lang.com/) templating engine for views, not ERB which is a default in Ruby world. It's quite easy, but if you don't feel comfortable, feel free to use ERB. The same thing stands for other gems. It's your code, use whatever suits you.
-4. Some features are defined in files in `features/features` directory. If you're curious, they're written in Cucumber and this is executable code. You can run it with `bundle exec cucumber` and check if your code satisfies these definitions.
-5. If you have any problems ask for help in our public [Chat Room](https://www.hipchat.com/gVsjIkRpD). We really mean it! There's nothing wrong in seeking advice. (Please pay attention to the topic message)
+14. Question's author receives e-mail notification when someone answers his question.
+15. User receives e-mail notification when his answer is accepted.
+  Email notifications are optional, they could be disabled in Account settings
 
-## Resources
 
-Here's the list of useful resources that might help you on your journey.
+16. There is a leaderboard page where users are sorted by points.
+  Instead it is possible to sort users by Username or by Points
 
-### Ruby
+17. E-mails are sent via background jobs.
+  All emails are sent via background jobs. Devise mails are sent via sidekiq server and 'devise-async' gem, rest mails ('when new answer to my question' and 'when somebody accept my answer' are sent via redis server and sidekiq server - this is only avaliable in Development because free Heroku account gives only one job)
+  To use async emails it is required to install and run 'redis' server -> redis-server and 'sidekiq' server -> bundle exec sidekiq
+  On heroku I use SendGrid to send emails.
 
-* http://iwanttolearnruby.com
-* https://www.codeschool.com/paths/ruby
+18. Users can login using their GitHub accounts.
+  Users can also login using their google and facebook account.
+  Users can set password and then sign in with this password or using omniauth. Users who sign up without omniauth or users who already set password need old password to change it.
 
-### Ruby on Rails
+19. Liking answers should not reload the page.
+  Liking answers are in AJAX requests
 
-* http://guides.rubyonrails.org
-* http://api.rubyonrails.org
-* http://railscasts.com
+20. Questions and aswers can be written in Markdown format.
+  I used 'redcarpet' gem
 
-### Git
 
-* https://www.codeschool.com/courses/try-git
-* https://try.github.io
-* https://www.atlassian.com/git/tutorial
-* http://git-scm.com/book
+### I also added:
+1. I added bootstrap 3 framework and CSS styles.
+2. There are real-time notifications with Pusher. They can review them, delete selecter or delete all.
+3. Tags could be added to questions. It is possible to view questions with specified tag.
+4. 'New question' and 'edit question' partials are displayed directly on page using AJAX. When user isn't signed in it redirects to sign in page.
+5. If user has no Avatar it displays Gravatar. If user adds Avatar -> Avatar is displayed.
 
-### Heroku
+## My ChallangeApp on heroku
+[*ChallangeApp*](http://whispering-thicket-9676.herokuapp.com/)
 
-* https://devcenter.heroku.com/articles/getting-started-with-rails3
-
-### Other
-
-* https://github.com/monterail/guidelines - Our own set of web development guildelines and best practices
-
-## License
-
-See attached LICENSE.txt file.
-
-Copyright (c) 2014 Monterail.com LLC
+## link to Original README file
+[*Original README*](https://github.com/marcinkornek/challangeApp/blob/master/original%20README.md)
