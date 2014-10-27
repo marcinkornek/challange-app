@@ -5,38 +5,36 @@ describe Question do
   let(:user) { FactoryGirl.create(:confirmed_user) }
   before { @question = user.questions.build(title: "Lorem ipsum", contents: "dolor sit amet, consectetur adipiscing elit, sed do eiusmod") }
 
-  subject { @question }
+  it { expect(@question).to respond_to(:title) }
+  it { expect(@question).to respond_to(:contents) }
+  it { expect(@question).to respond_to(:user_id) }
+  it { expect(@question).to respond_to(:user) }
+  it { expect(@question).to respond_to(:answers) }
+  it { expect(@question).to respond_to(:points) }
+  it { expect(@question).to respond_to(:accepted_answer_id) }
+  it { expect(@question).to respond_to(:user_id) }
+  it { expect(@question).to respond_to(:opinions) }
 
-  it { should respond_to(:title) }
-  it { should respond_to(:contents) }
-  it { should respond_to(:user_id) }
-  it { should respond_to(:user) }
-  it { should respond_to(:answers) }
-  it { should respond_to(:points) }
-  it { should respond_to(:accepted_answer_id) }
-  it { should respond_to(:user_id) }
-  it { should respond_to(:opinions) }
-
-  it { should be_valid }
+  it { expect(@question).to be_valid }
 
   describe "when user_id is not present" do
     before { @question.user_id = nil }
-    it { should_not be_valid }
+    it { expect(@question).not_to be_valid }
   end
 
   describe "with blank title" do
     before { @question.title = " " }
-    it { should_not be_valid }
+    it { expect(@question).not_to be_valid }
   end
 
   describe "with blank contents" do
     before { @question.contents = " " }
-    it { should_not be_valid }
+    it { expect(@question).not_to be_valid }
   end
 
   describe "with a question title that's too long" do
     before { @question.title = "a" * 61 }
-    it { should_not be_valid }
+    it { expect(@question).not_to be_valid }
   end
 
   # describe "questions associations" do
@@ -75,14 +73,14 @@ describe Question do
       before do
         @question = Question.new(title: 'title', contents: 'content', user_id: @user.id)
       end
-      it { should_not be_valid }
+      it { expect(@question).not_to be_valid }
     end
 
     context "when user has >= 10 points" do
       before do
         @other_question = Question.new(title: 'other title', contents: 'other content', user_id: @other_user.id)
       end
-      it { should be_valid }
+      it { expect(@question).to be_valid }
     end
   end
 
@@ -93,7 +91,7 @@ describe Question do
       @question.update_attributes(contents: 'changed content')
     end
 
-    it { should be_valid }
+    it { expect(@question).to be_valid }
     it { expect(@question.reload.contents).to eq 'changed content' }
 
   end

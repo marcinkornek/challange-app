@@ -67,9 +67,9 @@ describe "QuestionPages" do
             click_button "Create question"
           end
 
-          it { should have_content('Tags: Rails') }
-          it { should have_link('Tags', href: tags_path) }
-          it { should have_link('Rails', href: tag_path('Rails')) }
+          it { expect(page).to have_content('Tags: Rails') }
+          it { expect(page).to have_link('Tags', href: tags_path) }
+          it { expect(page).to have_link('Rails', href: tag_path('Rails')) }
         end
       end
     end
@@ -84,9 +84,9 @@ describe "QuestionPages" do
           visit question_path(user_question)
         end
         it do
-          should have_content('Delete')
-          should have_content('Edit |')
-          should have_content(user_question.contents)
+          expect(page).to have_content('Delete')
+          expect(page).to have_content('Edit |')
+          expect(page).to have_content(user_question.contents)
         end
       end
 
@@ -95,9 +95,9 @@ describe "QuestionPages" do
           visit question_path(other_user_question)
         end
         it do
-          should_not have_content('Delete')
-          should_not have_content('Edit |')
-          should have_content(other_user_question.contents)
+          expect(page).not_to have_content('Delete')
+          expect(page).not_to have_content('Edit |')
+          expect(page).to have_content(other_user_question.contents)
         end
       end
 

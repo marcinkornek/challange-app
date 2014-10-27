@@ -5,23 +5,21 @@ describe User do
   before { @user = User.new(username: 'example_username', email: "user@example.com", password: "asdasdasd",
                             password_confirmation: "asdasdasd") }
 
-  subject { @user }
+  it { expect(@user).to respond_to(:email) }
+  it { expect(@user).to respond_to(:password) }
+  it { expect(@user).to respond_to(:password_confirmation) }
+  it { expect(@user).to respond_to(:answers) }
+  it { expect(@user).to respond_to(:questions) }
+  it { expect(@user).to respond_to(:notifications) }
+  it { expect(@user).to respond_to(:avatar) }
+  it { expect(@user).to respond_to(:points) }
+  it { expect(@user).to respond_to(:send_new_message_email) }
+  it { expect(@user).to respond_to(:send_accepted_answer_email) }
+  it { expect(@user).to respond_to(:friendly_token) }
+  it { expect(@user).to respond_to(:provider) }
+  it { expect(@user).to respond_to(:uid) }
 
-  it { should be_valid }
-
-  it { should respond_to(:email) }
-  it { should respond_to(:password) }
-  it { should respond_to(:password_confirmation) }
-  it { should respond_to(:answers) }
-  it { should respond_to(:questions) }
-  it { should respond_to(:notifications) }
-  it { should respond_to(:avatar) }
-  it { should respond_to(:points) }
-  it { should respond_to(:send_new_message_email) }
-  it { should respond_to(:send_accepted_answer_email) }
-  it { should respond_to(:friendly_token) }
-  it { should respond_to(:provider) }
-  it { should respond_to(:uid) }
+  it { expect(@user).to be_valid }
 
   describe "when email format is invalid" do
     it "should be invalid" do
@@ -51,22 +49,22 @@ describe User do
       @user.save
     end
 
-    it { should_not be_valid }
+    it { expect(@user).not_to be_valid }
   end
 
   describe "when password is not present" do
     before { @user.password = ''}
-    it { should_not be_valid }
+    it { expect(@user).not_to be_valid }
   end
 
   describe "when password doesn't match confirmation" do
     before { @user.password_confirmation = "mismatch" }
-    it { should_not be_valid }
+    it { expect(@user).not_to be_valid }
   end
 
   describe "with a password that's too short" do
     before { @user.password = @user.password_confirmation = "a" * 7 }
-    it { should_not be_valid }
+    it { expect(@user).not_to be_valid }
   end
 
   describe "email address with mixed case" do

@@ -7,31 +7,29 @@ describe Answer do
 
   before { @answer = question.answers.build(contents: "tempor incididunt ut labore et dolore magna aliqua.", user: user) }
 
-  subject { @answer }
+  it { expect(@answer).to respond_to(:contents) }
+  it { expect(@answer).to respond_to(:question_id) }
+  it { expect(@answer).to respond_to(:user_id) }
+  it { expect(@answer).to respond_to(:user) }
+  it { expect(@answer).to respond_to(:question) }
+  it { expect(@answer).to respond_to(:points) }
+  it { expect(@answer).to respond_to(:opinions) }
 
-  it { should respond_to(:contents) }
-  it { should respond_to(:question_id) }
-  it { should respond_to(:user_id) }
-  it { should respond_to(:user) }
-  it { should respond_to(:question) }
-  it { should respond_to(:points) }
-  it { should respond_to(:opinions) }
-
-  it { should be_valid }
+  it { expect(@answer).to be_valid }
 
   describe "when user_id is not present" do
     before { @answer.user_id = nil }
-    it { should_not be_valid }
+    it { expect(@answer).not_to be_valid }
   end
 
   describe "when question_id is not present" do
     before { @answer.question_id = nil }
-    it { should_not be_valid }
+    it { expect(@answer).not_to be_valid }
   end
 
   describe "with blank contents" do
     before { @answer.contents = " " }
-    it { should_not be_valid }
+    it { expect(@answer).not_to be_valid }
   end
 
 end
