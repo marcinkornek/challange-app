@@ -14,10 +14,6 @@ describe NotificationsController do
       @other_user_second_answer = FactoryGirl.create(:answer, user: @other_user, question: @user_question)
     end
 
-    it 'redirects to questions url' do
-      patch :like_question, id: @user_question.id
-      expect(response).to redirect_to question_url(@user_question.id)
-    end
   end
 
 end
